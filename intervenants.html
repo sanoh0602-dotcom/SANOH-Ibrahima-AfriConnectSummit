@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AfriConnect Summit 2027 — Intervenants</title>
+    <title>AfriConnect Summit 2026 — Intervenants</title>
     <!-- Bootstrap Icons via CDN -->
     <link
       rel="stylesheet"
@@ -19,16 +19,429 @@
   </head>
   <body>
     <!-- NAVBAR -->
-    <header></header>
+    <header>
+      <nav class="navbar" id="navbar">
+        <div class="nav-container">
+          <a
+            href="index.html"
+            class="nav-logo"
+            aria-label="Accueil AfriConnect Summit"
+          >
+            <i class="bi bi-globe-africa" aria-hidden="true"></i>
+            AfriConnect Summit
+          </a>
+
+          <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="nav-link">Accueil</a></li>
+            <li><a href="programme.html" class="nav-link">Programme</a></li>
+            <li>
+              <a
+                href="intervenants.html"
+                class="nav-link active"
+                aria-current="page"
+                >Intervenants</a
+              >
+            </li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+
+          <div class="nav-actions">
+            <button
+              id="darkModeToggle"
+              class="btn-dark-mode"
+              aria-label="Activer le mode sombre"
+            >
+              <i class="bi bi-moon-fill" aria-hidden="true"></i>
+            </button>
+            <button
+              id="hamburger"
+              class="btn-hamburger"
+              aria-label="Ouvrir le menu"
+              aria-expanded="false"
+              aria-controls="navLinks"
+            >
+              <i class="bi bi-list" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
 
     <!-- CONTENU PRINCIPAL -->
-    <main></main>
+    <main>
+      <!-- HERO INTERNE  -->
+      <!--
+        Bannière pleine largeur
+        Fil d'Ariane : Accueil > Intervenants
+        H1 obligatoire sur chaque page
+      -->
+      <section class="page-hero">
+        <div class="page-hero-content">
+          <!-- Fil d'Ariane -->
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <a href="index.html">Accueil</a>
+            <span aria-hidden="true"> &rsaquo; </span>
+            <span aria-current="page">Intervenants</span>
+          </nav>
+
+          <h1 class="page-hero-title">Nos intervenants</h1>
+          <p class="page-hero-subtitle">
+            48 experts du numérique africain et international réunis pour 3
+            jours de partage et d'inspiration.
+          </p>
+        </div>
+      </section>
+      <!--SECTION FILTRAGE DYNAMIQUE  -->
+      <!--
+        Boutons de filtre par thématique
+        JavaScript les gère dans main.js :
+        - Clic sur un bouton → filtre les cartes
+        - data-filtre correspond à data-categorie des cartes
+        - Le bouton actif est mis en évidence visuellement
+      -->
+      <section class="intervenants-section animate-section" id="intervenants">
+        <div class="section-container">
+          <!-- Boutons de filtre -->
+          <div
+            class="filtres-container"
+            role="group"
+            aria-label="Filtrer les intervenants par thématique"
+          >
+            <!-- data-filtre="tous" → affiche tous les intervenants -->
+            <button
+              class="filtre-btn active"
+              data-filtre="tous"
+              aria-pressed="true"
+            >
+              <i class="bi bi-grid-fill" aria-hidden="true"></i>
+              Tous
+            </button>
+
+            <button
+              class="filtre-btn"
+              data-filtre="ia-tech"
+              aria-pressed="false"
+            >
+              <i class="bi bi-robot" aria-hidden="true"></i>
+              IA & Tech
+            </button>
+
+            <button
+              class="filtre-btn"
+              data-filtre="business"
+              aria-pressed="false"
+            >
+              <i class="bi bi-briefcase-fill" aria-hidden="true"></i>
+              Business
+            </button>
+
+            <button
+              class="filtre-btn"
+              data-filtre="design"
+              aria-pressed="false"
+            >
+              <i class="bi bi-palette-fill" aria-hidden="true"></i>
+              Design
+            </button>
+
+            <button class="filtre-btn" data-filtre="data" aria-pressed="false">
+              <i class="bi bi-bar-chart-fill" aria-hidden="true"></i>
+              Data
+            </button>
+          </div>
+          <!-- GRILLE D'INTERVENANTS  -->
+          <!--
+            9 intervenants fictifs
+            CSS Grid : 3 colonnes desktop, 2 tablette, 1 mobile
+            Chaque carte : photo + nom + spécialité + pays
+            Effet hover : ombre + translation (défini dans style.css)
+            data-categorie ciblé par JavaScript pour le filtrage
+          -->
+          <div class="intervenants-grid" id="intervenantsGrid"></div>
+          <!-- Intervenant 1 — IA & Tech -->
+          <article class="intervenant-card" data-categorie="ia-tech">
+            <div class="intervenant-photo">
+              <img
+                src="images/pexels-mizunokozuki-13801544.jpg"
+                alt="Photo d'Amadou Touré, CEO AfriTech Ventures, Guinéé"
+              />
+              <span class="intervenant-badge ia-tech">IA & Tech</span>
+            </div>
+            <div class="intervenant-info">
+              <h2 class="intervenant-nom">Amadou Touré</h2>
+              <p class="intervenant-titre">CEO — AfriTech Ventures</p>
+              <p class="intervenant-pays">
+                <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                Guinée
+              </p>
+              <p class="intervenant-bio">
+                Pionnier de l'intelligence artificielle en Afrique de l'Ouest,
+                Amadou accompagne les startups tech africaines depuis 10 ans.
+              </p>
+            </div>
+          </article>
+          <!-- Intervenant 2 — IA & Tech -->
+          <article class="intervenant-card" data-categorie="ia-tech">
+            <div class="intervenant-photo">
+              <img
+                src="images/pexels-mizunokozuki-13801595.jpg"
+                alt="Photo de Grace Otieno, Directrice IA chez Google Africa, Kenya"
+              />
+              <span class="intervenant-badge ia-tech">IA & Tech</span>
+            </div>
+            <div class="intervenant-info">
+              <h2 class="intervenant-nom">Grace Otieno</h2>
+              <p class="intervenant-titre">Directrice IA — Google Africa</p>
+              <p class="intervenant-pays">
+                <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                Kenya
+              </p>
+              <p class="intervenant-bio">
+                Experte en machine learning et traitement du langage naturel
+                pour les langues africaines. Diplômée du MIT.
+              </p>
+            </div>
+          </article>
+          <!-- Intervenant 3 — Business -->
+          <article class="intervenant-card" data-categorie="business">
+            <div class="intervenant-photo">
+              <img
+                src="images/pexels-ninthgrid-2149521550-30688593.jpg"
+                alt="Photo de Youssef Ben Salah, Fondateur FinTech Maghreb, Maroc"
+              />
+              <span class="intervenant-badge business">Business</span>
+            </div>
+            <div class="intervenant-info">
+              <h2 class="intervenant-nom">Youssef Ben Salah</h2>
+              <p class="intervenant-titre">Fondateur — FinTech Maghreb</p>
+              <p class="intervenant-pays">
+                <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                Maroc
+              </p>
+              <p class="intervenant-bio">
+                Entrepreneur serial dans la fintech, il a levé plus de 50M$ pour
+                ses startups et accompagné 200 entrepreneurs.
+              </p>
+            </div>
+          </article>
+
+          <!-- Intervenant 4 — Data -->
+          <article class="intervenant-card" data-categorie="data">
+            <div class="intervenant-photo">
+              <img
+                src="images/pexels-ketut-subiyanto-4963359.jpg"
+                alt="Photo de Ngozi Adeyemi, CTO DataHub Nigeria, Nigeria"
+              />
+              <span class="intervenant-badge data">Data</span>
+            </div>
+            <div class="intervenant-info">
+              <h2 class="intervenant-nom">Ngozi Adeyemi</h2>
+              <p class="intervenant-titre">CTO — DataHub Nigeria</p>
+              <p class="intervenant-pays">
+                <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                Nigeria
+              </p>
+              <p class="intervenant-bio">
+                Spécialiste en data science et big data, elle développe des
+                solutions d'analyse pour les marchés africains émergents.
+              </p>
+            </div>
+          </article>
+
+          <!-- Intervenant 5 — Business -->
+          <article class="intervenant-card" data-categorie="business">
+            <div class="intervenant-photo">
+              <img
+                src="images/pexels-rdne-9034280.jpg"
+                alt="Photo d'Aïssata Camara, Directrice Générale AfriInvest, Guinée"
+              />
+              <span class="intervenant-badge business">Business</span>
+            </div>
+            <div class="intervenant-info">
+              <h2 class="intervenant-nom">Aïssata Camara</h2>
+              <p class="intervenant-titre">Directrice Générale — AfriInvest</p>
+              <p class="intervenant-pays">
+                <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                Guinée
+              </p>
+              <p class="intervenant-bio">
+                Investisseuse engagée pour l'écosystème startup africain, elle a
+                financé plus de 80 projets innovants en 5 ans.
+              </p>
+            </div>
+          </article>
+
+          <!-- Intervenant 6 — Design -->
+          <article class="intervenant-card" data-categorie="design">
+            <div class="intervenant-photo">
+              <img
+                src="images/pexels-edmond-dantes-8068875.jpg"
+                alt="Photo de Nanamoudou Baldé, UX Director AfriDesign Studio, Guinée"
+              />
+              <span class="intervenant-badge design">Design</span>
+            </div>
+            <div class="intervenant-info">
+              <h2 class="intervenant-nom">Nanamoudou Baldé</h2>
+              <p class="intervenant-titre">UX Director — AfriDesign Studio</p>
+              <p class="intervenant-pays">
+                <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                Guinée
+              </p>
+              <p class="intervenant-bio">
+                Pionnière du design centré sur l'utilisateur africain, elle crée
+                des interfaces adaptées aux réalités du continent.
+              </p>
+            </div>
+          </article>
+
+          <!-- Intervenant 7 — IA & Tech -->
+          <article class="intervenant-card" data-categorie="ia-tech">
+            <div class="intervenant-photo">
+              <img
+                src="images/pexels-kimberly-alves-2160417495-37494738.jpg"
+                alt="Photo d'Ibrahim Konaté, Lead Engineer Open Source Africa, Côte d'Ivoire"
+              />
+              <span class="intervenant-badge ia-tech">IA & Tech</span>
+            </div>
+            <div class="intervenant-info">
+              <h2 class="intervenant-nom">Ibrahim Konaté</h2>
+              <p class="intervenant-titre">
+                Lead Engineer — Open Source Africa
+              </p>
+              <p class="intervenant-pays">
+                <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                Côte d'Ivoire
+              </p>
+              <p class="intervenant-bio">
+                Contributeur majeur à l'écosystème open source africain, il
+                développe des outils pour les développeurs du continent.
+              </p>
+            </div>
+          </article>
+
+          <!-- Intervenant 8 — Data -->
+          <article class="intervenant-card" data-categorie="data">
+            <div class="intervenant-photo">
+              <img
+                src="images/pexels-jakubzerdzicki-20232363.jpg"
+                alt="Photo de Mamady Cissé Karicy, Data Scientist GhanaData Lab, Guinée"
+              />
+              <span class="intervenant-badge data">Data</span>
+            </div>
+            <div class="intervenant-info">
+              <h2 class="intervenant-nom">Mamady Cissé Karicy</h2>
+              <p class="intervenant-titre">Data Scientist — GhanaData Lab</p>
+              <p class="intervenant-pays">
+                <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                Guinée
+              </p>
+              <p class="intervenant-bio">
+                Expert en visualisation de données et analytics, il aide les
+                gouvernements africains à prendre de meilleures décisions.
+              </p>
+            </div>
+          </article>
+
+          <!-- Intervenant 9 — Design -->
+          <article class="intervenant-card" data-categorie="design">
+            <div class="intervenant-photo">
+              <img
+                src="images/pexels-ai25studioai-5466271.jpg"
+                alt="Photo d'Ama Boateng, Creative Director AfroCreative, Ghana"
+              />
+              <span class="intervenant-badge design">Design</span>
+            </div>
+            <div class="intervenant-info">
+              <h2 class="intervenant-nom">Ama Boateng</h2>
+              <p class="intervenant-titre">Creative Director — AfroCreative</p>
+              <p class="intervenant-pays">
+                <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                Ghana
+              </p>
+              <p class="intervenant-bio">
+                Directrice créative primée, elle fusionne les arts traditionnels
+                africains et le design numérique moderne.
+              </p>
+            </div>
+          </article>
+          <!-- fin intervenants-grid -->
+        </div>
+      </section>
+    </main>
 
     <!-- FOOTER -->
-    <footer></footer>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3 class="footer-title">
+            <i class="bi bi-globe-africa" aria-hidden="true"></i>
+            AfriConnect Summit
+          </h3>
+          <p class="footer-desc">
+            Le sommet tech panafricain annuel qui connecte les talents, les
+            idées et les opportunités du continent africain.
+          </p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Twitter AfriConnect Summit">
+              <i class="bi bi-twitter-x" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn AfriConnect Summit">
+              <i class="bi bi-linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="Instagram AfriConnect Summit">
+              <i class="bi bi-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="YouTube AfriConnect Summit">
+              <i class="bi bi-youtube" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="programme.html">Programme</a></li>
+            <li><a href="intervenants.html">Intervenants</a></li>
+            <li><a href="contact.html">Contact & Inscription</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Informations</h3>
+          <ul class="footer-info">
+            <li>
+              <i class="bi bi-calendar3" aria-hidden="true"></i>
+              15, 16 & 17 Mars 2027
+            </li>
+            <li>
+              <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+              Centre de Conférences Abdou Diouf, Dakar
+            </li>
+            <li>
+              <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+              contact@africonnect-summit.com
+            </li>
+            <li>
+              <i class="bi bi-telephone-fill" aria-hidden="true"></i>
+              +221 77 000 00 00
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; <span id="currentYear"></span> AfriConnect Summit. Tous droits
+          réservés.
+        </p>
+      </div>
+    </footer>
 
     <!-- Bouton retour en haut -->
-    <button id="backToTop" aria-label="Retour en haut"></button>
+    <button id="backToTop" aria-label="Retour en haut de la page">
+      <i class="bi bi-arrow-up" aria-hidden="true"></i>
+    </button>
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>

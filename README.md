@@ -1,4 +1,4 @@
-# AfriConnect Summit 2027 🌍
+# AfriConnect Summit 2026 🌍
 
 Site vitrine d'une conférence tech fictive panafricaine.
 

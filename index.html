@@ -3,34 +3,549 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AfriConnect Summit 2027 — Accueil</title>
+    <title>AfriConnect Summit 2026 — Accueil</title>
+
     <!-- Bootstrap Icons via CDN -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
-    <!-- Google Fonts -->
+
+    <!-- Google Fonts : Syne (titres) + Inter (corps) -->
     <link
       href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <!-- CSS personnalisé -->
+
+    <!-- CSS personnalisé : UN SEUL fichier CSS, pas de CSS inline -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
+
   <body>
-    <!-- NAVBAR -->
-    <header></header>
+    <!--  NAVBAR -->
+    <header>
+      <nav class="navbar" id="navbar">
+        <div class="nav-container">
+          <!-- Logo -->
+          <a
+            href="index.html"
+            class="nav-logo"
+            aria-label="Accueil AfriConnect Summit"
+          >
+            <i class="bi bi-globe-africa" aria-hidden="true"></i>
+            AfriConnect Summit
+          </a>
+
+          <!-- Liens de navigation (cachés sur mobile, visibles sur desktop) -->
+          <ul class="nav-links" id="navLinks">
+            <li>
+              <a href="index.html" class="nav-link active" aria-current="page"
+                >Accueil</a
+              >
+            </li>
+            <li><a href="programme.html" class="nav-link">Programme</a></li>
+            <li>
+              <a href="intervenants.html" class="nav-link">Intervenants</a>
+            </li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+
+          <!-- Actions navbar -->
+          <div class="nav-actions">
+            <!-- Bouton Dark/Light Mode -->
+            <!-- id="darkModeToggle" ciblé par JavaScript -->
+            <button
+              id="darkModeToggle"
+              class="btn-dark-mode"
+              aria-label="Activer le mode sombre"
+            >
+              <i class="bi bi-moon-fill" aria-hidden="true"></i>
+            </button>
+
+            <!-- Bouton hamburger mobile -->
+            <!-- id="hamburger" ciblé par JavaScript -->
+            <button
+              id="hamburger"
+              class="btn-hamburger"
+              aria-label="Ouvrir le menu"
+              aria-expanded="false"
+              aria-controls="navLinks"
+            >
+              <i class="bi bi-list" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
 
     <!-- CONTENU PRINCIPAL -->
-    <main></main>
+    <main>
+      <!--  SECTION HERO -->
+      <!--
+        min-height: 100vh → prend tout l'écran
+        Animation CSS au chargement définie dans style.css
+        Compte à rebours mis à jour par JavaScript dans main.js
+      -->
+      <section class="hero-section animate-section" id="hero">
+        <div class="hero-content">
+          <!-- Badge événement -->
+          <span class="hero-badge">
+            <i class="bi bi-calendar-event" aria-hidden="true"></i>
+            Édition 2026
+          </span>
 
-    <!-- FOOTER -->
-    <footer></footer>
+          <!-- Titre principal H1 -->
+          <h1 class="hero-title">
+            AfriConnect <span class="text-accent">Summit</span> 2026
+          </h1>
+
+          <!-- Sous-titre avec lieu et dates fictives -->
+          <p class="hero-subtitle">
+            Le plus grand sommet tech panafricain réunit développeurs,
+            entrepreneurs et investisseurs du continent.
+          </p>
+          <p class="hero-location">
+            <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+            Dakar, Sénégal — 15, 16 & 17 Mars 2026
+          </p>
+
+          <!-- Deux boutons CTA -->
+          <div class="hero-buttons">
+            <a href="contact.html" class="btn btn-primary">
+              <i class="bi bi-ticket-perforated-fill" aria-hidden="true"></i>
+              S'inscrire maintenant
+            </a>
+            <a href="programme.html" class="btn btn-secondary">
+              <i class="bi bi-calendar3" aria-hidden="true"></i>
+              Voir le programme
+            </a>
+          </div>
+
+          <!-- Compte à rebours en temps réel -->
+          <!--
+            JavaScript (main.js) met à jour les chiffres toutes les secondes
+            avec setInterval() et calcule la différence avec la date de l'événement
+          -->
+          <div
+            class="countdown"
+            role="region"
+            aria-label="Compte à rebours avant l'événement"
+          >
+            <div class="countdown-item">
+              <span class="countdown-number" id="countdown-jours">00</span>
+              <span class="countdown-label">Jours</span>
+            </div>
+            <div class="countdown-separator" aria-hidden="true">:</div>
+            <div class="countdown-item">
+              <span class="countdown-number" id="countdown-heures">00</span>
+              <span class="countdown-label">Heures</span>
+            </div>
+            <div class="countdown-separator" aria-hidden="true">:</div>
+            <div class="countdown-item">
+              <span class="countdown-number" id="countdown-minutes">00</span>
+              <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-separator" aria-hidden="true">:</div>
+            <div class="countdown-item">
+              <span class="countdown-number" id="countdown-secondes">00</span>
+              <span class="countdown-label">Secondes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image héro -->
+        <div class="hero-image">
+          <img
+            src="images/alexandre-pellaes-6vAjp0pscX0-unsplash.jpg"
+            alt="Salle de conférence AfriConnect Summit 2026 à Dakar remplie de participants"
+          />
+        </div>
+      </section>
+
+      <!-- SECTION CHIFFRES CLÉS -->
+      <!--
+        CSS Grid responsive défini dans style.css
+        Compteurs animés par JavaScript (IntersectionObserver) dans main.js
+        data-target = valeur finale du compteur
+      -->
+      <section class="stats-section animate-section" id="chiffres-cles">
+        <div class="section-container">
+          <h2 class="section-title">AfriConnect en chiffres</h2>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <i class="bi bi-people-fill stat-icon" aria-hidden="true"></i>
+              <span class="stat-number" data-target="1200">0</span>
+              <span class="stat-suffix">+</span>
+              <span class="stat-label">Participants</span>
+            </div>
+
+            <div class="stat-card">
+              <i class="bi bi-mic-fill stat-icon" aria-hidden="true"></i>
+              <span class="stat-number" data-target="48">0</span>
+              <span class="stat-label">Intervenants</span>
+            </div>
+
+            <div class="stat-card">
+              <i class="bi bi-calendar3 stat-icon" aria-hidden="true"></i>
+              <span class="stat-number" data-target="3">0</span>
+              <span class="stat-label">Jours</span>
+            </div>
+
+            <div class="stat-card">
+              <i class="bi bi-globe-africa stat-icon" aria-hidden="true"></i>
+              <span class="stat-number" data-target="12">0</span>
+              <span class="stat-label">Pays représentés</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--  SECTION POURQUOI PARTICIPER-->
+      <!--
+        3 arguments en Flexbox
+        Chaque argument : icône + titre + description
+        Animation au scroll via IntersectionObserver (main.js)
+      -->
+      <section class="why-section animate-section" id="pourquoi">
+        <div class="section-container">
+          <h2 class="section-title">Pourquoi participer ?</h2>
+          <p class="section-subtitle">
+            Rejoignez l'événement qui transforme le paysage tech africain
+          </p>
+
+          <div class="why-flex">
+            <article class="why-card">
+              <i class="bi bi-lightning-fill why-icon" aria-hidden="true"></i>
+              <h3>Networking d'élite</h3>
+              <p>
+                Connectez-vous avec plus de 1 200 professionnels du numérique,
+                investisseurs et entrepreneurs africains et internationaux.
+              </p>
+            </article>
+
+            <article class="why-card">
+              <i class="bi bi-mortarboard-fill why-icon" aria-hidden="true"></i>
+              <h3>Conférences de haut niveau</h3>
+              <p>
+                48 intervenants de renom partagent leurs expertises en IA,
+                blockchain, fintech et développement durable.
+              </p>
+            </article>
+
+            <article class="why-card">
+              <i
+                class="bi bi-rocket-takeoff-fill why-icon"
+                aria-hidden="true"
+              ></i>
+              <h3>Opportunités de carrière</h3>
+              <p>
+                Rencontrez des recruteurs de plus de 12 pays et découvrez les
+                opportunités qui transformeront votre parcours professionnel.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!--  SECTION INTERVENANTS VEDETTES-->
+      <!--
+        4 intervenants fictifs en CSS Grid
+        Effets hover définis dans style.css
+        Bouton de redirection vers intervenants.html
+      -->
+      <section
+        class="speakers-section animate-section"
+        id="intervenants-vedettes"
+      >
+        <div class="section-container">
+          <h2 class="section-title">Intervenants vedettes</h2>
+          <p class="section-subtitle">
+            Des visionnaires qui façonnent l'avenir du numérique africain
+          </p>
+
+          <div class="speakers-grid">
+            <!-- Intervenant 1 -->
+            <article class="speaker-card">
+              <div class="speaker-photo">
+                <img
+                  src="images/premium_photo-1723809767666-fb1cd419561f.avif"
+                  alt="Photo de Maimouna Barry, CEO AfriTech Ventures, Guinée"
+                />
+              </div>
+              <div class="speaker-info">
+                <h3 class="speaker-name">Maimouna Barry</h3>
+                <p class="speaker-title">CEO — AfriTech Ventures</p>
+                <p class="speaker-country">
+                  <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                  Guinée
+                </p>
+              </div>
+            </article>
+
+            <!-- Intervenant 2 -->
+            <article class="speaker-card">
+              <div class="speaker-photo">
+                <img
+                  src="images/premium_photo-1723291331030-d6874d63e5bf.avif"
+                  alt="Photo de Grace Otieno, Directrice IA chez Google Africa, Kenya"
+                />
+              </div>
+              <div class="speaker-info">
+                <h3 class="speaker-name">Grace Otieno</h3>
+                <p class="speaker-title">Directrice IA — Google Africa</p>
+                <p class="speaker-country">
+                  <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                  Kenya
+                </p>
+              </div>
+            </article>
+
+            <!-- Intervenant 3 -->
+            <article class="speaker-card">
+              <div class="speaker-photo">
+                <img
+                  src="images/premium_photo-1661945966032-e8b85e3ca016.avif"
+                  alt="Photo de Youssef Ben Salah, Fondateur FinTech Maghreb, Maroc"
+                />
+              </div>
+              <div class="speaker-info">
+                <h3 class="speaker-name">Youssef Ben Salah</h3>
+                <p class="speaker-title">Fondateur — FinTech Maghreb</p>
+                <p class="speaker-country">
+                  <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                  Maroc
+                </p>
+              </div>
+            </article>
+
+            <!-- Intervenant 4 -->
+            <article class="speaker-card">
+              <div class="speaker-photo">
+                <img
+                  src="images/pexels-mizunokozuki-12911890.jpg"
+                  alt="Photo de Ngozi Adeyemi, CTO DataHub Nigeria, Nigeria"
+                />
+              </div>
+              <div class="speaker-info">
+                <h3 class="speaker-name">Ngozi Adeyemi</h3>
+                <p class="speaker-title">CTO — DataHub Nigeria</p>
+                <p class="speaker-country">
+                  <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                  Nigeria
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <!-- Bouton de redirection vers intervenants.html -->
+          <div class="section-cta">
+            <a href="intervenants.html" class="btn btn-primary">
+              <i class="bi bi-people-fill" aria-hidden="true"></i>
+              Voir tous les intervenants
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION SPONSORS  -->
+      <!--
+        3 niveaux : Or, Argent, Bronze
+        Différenciés visuellement par la taille
+        Disposition en Flexbox
+      -->
+      <section class="sponsors-section animate-section" id="sponsors">
+        <div class="section-container">
+          <h2 class="section-title">Nos sponsors</h2>
+          <p class="section-subtitle">
+            Des partenaires engagés pour l'avenir du numérique africain
+          </p>
+
+          <!-- Niveau Or -->
+          <div class="sponsors-level">
+            <h3 class="sponsor-level-title sponsor-or">
+              <i class="bi bi-trophy-fill" aria-hidden="true"></i>
+              Sponsors Or
+            </h3>
+            <div class="sponsors-flex sponsors-flex-or">
+              <div class="sponsor-card sponsor-card-or">
+                <img
+                  src="images/istockphoto-1367530390-1024x1024.jpg"
+                  alt="Logo du sponsor Or : TechAfrica Group"
+                />
+                <span>TechAfrica Group</span>
+              </div>
+              <div class="sponsor-card sponsor-card-or">
+                <img
+                  src="images/istockphoto-1315541777-1024x1024.jpg"
+                  alt="Logo du sponsor Or : Orange Digital Center"
+                />
+                <span>Orange Digital Center</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Niveau Argent -->
+          <div class="sponsors-level">
+            <h3 class="sponsor-level-title sponsor-argent">
+              <i class="bi bi-award-fill" aria-hidden="true"></i>
+              Sponsors Argent
+            </h3>
+            <div class="sponsors-flex sponsors-flex-argent">
+              <div class="sponsor-card sponsor-card-argent">
+                <img
+                  src="images/istockphoto-520948744-1024x1024.jpg"
+                  alt="Logo du sponsor Argent : AfriPay"
+                />
+                <span>AfriPay</span>
+              </div>
+              <div class="sponsor-card sponsor-card-argent">
+                <img
+                  src="images/istockphoto-1320739633-1024x1024.jpg"
+                  alt="Logo du sponsor Argent : DataSen"
+                />
+                <span>DataSen</span>
+              </div>
+              <div class="sponsor-card sponsor-card-argent">
+                <img
+                  src="images/istockphoto-881120664-1024x1024.jpg"
+                  alt="Logo du sponsor Argent : CloudAfrica"
+                />
+                <span>CloudAfrica</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Niveau Bronze -->
+          <div class="sponsors-level">
+            <h3 class="sponsor-level-title sponsor-bronze">
+              <i class="bi bi-star-fill" aria-hidden="true"></i>
+              Sponsors Bronze
+            </h3>
+            <div class="sponsors-flex sponsors-flex-bronze">
+              <div class="sponsor-card sponsor-card-bronze">
+                <img
+                  src="images/istockphoto-1090652266-1024x1024.jpg"
+                  alt="Logo du sponsor Bronze : StartupHub Dakar"
+                />
+                <span>StartupHub Dakar</span>
+              </div>
+              <div class="sponsor-card sponsor-card-bronze">
+                <img
+                  src="images/premium_photo-1669075651564-2089e87a9920.avif"
+                  alt="Logo du sponsor Bronze : EduTech Africa"
+                />
+                <span>EduTech Africa</span>
+              </div>
+              <div class="sponsor-card sponsor-card-bronze">
+                <img
+                  src="images/photo-1551421184-c6be252c2b26.avif"
+                  alt="Logo du sponsor Bronze : GreenCode"
+                />
+                <span>GreenCode</span>
+              </div>
+              <div class="sponsor-card sponsor-card-bronze">
+                <img
+                  src="images/photo-1657702540736-df73455afb29.avif"
+                  alt="Logo du sponsor Bronze : MobileDev Africa"
+                />
+                <span>MobileDev Africa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!--  FOOTER -->
+    <!--
+      3 colonnes en Flexbox défini dans style.css
+      id="currentYear" → JavaScript injecte l'année avec new Date().getFullYear()
+    -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <!-- Colonne 1 : À propos -->
+        <div class="footer-col">
+          <h3 class="footer-title">
+            <i class="bi bi-globe-africa" aria-hidden="true"></i>
+            AfriConnect Summit
+          </h3>
+          <p class="footer-desc">
+            Le sommet tech panafricain annuel qui connecte les talents, les
+            idées et les opportunités du continent africain.
+          </p>
+          <!-- Réseaux sociaux -->
+          <div class="footer-socials">
+            <a href="#" aria-label="Twitter AfriConnect Summit">
+              <i class="bi bi-twitter-x" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn AfriConnect Summit">
+              <i class="bi bi-linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="Instagram AfriConnect Summit">
+              <i class="bi bi-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="YouTube AfriConnect Summit">
+              <i class="bi bi-youtube" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Colonne 2 : Navigation -->
+        <div class="footer-col">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="programme.html">Programme</a></li>
+            <li><a href="intervenants.html">Intervenants</a></li>
+            <li><a href="contact.html">Contact & Inscription</a></li>
+          </ul>
+        </div>
+
+        <!-- Colonne 3 : Informations pratiques -->
+        <div class="footer-col">
+          <h3 class="footer-title">Informations</h3>
+          <ul class="footer-info">
+            <li>
+              <i class="bi bi-calendar3" aria-hidden="true"></i>
+              15, 16 & 17 Mars 2026
+            </li>
+            <li>
+              <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+              Centre de Conférences Abdou Diouf, Dakar
+            </li>
+            <li>
+              <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+              contact@africonnect-summit.com
+            </li>
+            <li>
+              <i class="bi bi-telephone-fill" aria-hidden="true"></i>
+              +221 77 000 00 00
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ligne de copyright -->
+      <div class="footer-bottom">
+        <p>
+          &copy; <span id="currentYear"></span> AfriConnect Summit. Tous droits
+          réservés.
+        </p>
+      </div>
+    </footer>
 
     <!-- Bouton retour en haut -->
-    <button id="backToTop" aria-label="Retour en haut"></button>
+    <!--
+      display: none par défaut dans style.css
+      JavaScript l'affiche après 300px de scroll
+      Au clic : scrollTo({ top: 0, behavior: 'smooth' })
+    -->
+    <button id="backToTop" aria-label="Retour en haut de la page">
+      <i class="bi bi-arrow-up" aria-hidden="true"></i>
+    </button>
 
-    <!-- JavaScript -->
+    <!-- JavaScript : UN SEUL fichier main.js -->
     <script src="js/main.js"></script>
   </body>
 </html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AfriConnect Summit 2027 — Programme</title>
+    <title>AfriConnect Summit 2026 — Programme</title>
     <!-- Bootstrap Icons via CDN -->
     <link
       rel="stylesheet"
@@ -19,16 +19,578 @@
   </head>
   <body>
     <!-- NAVBAR -->
-    <header></header>
+    <header>
+      <nav class="navbar" id="navbar">
+        <div class="nav-container">
+          <!-- Logo -->
+          <a
+            href="index.html"
+            class="nav-logo"
+            aria-label="Accueil AfriConnect Summit"
+          >
+            <i class="bi bi-globe-africa" aria-hidden="true"></i>
+            AfriConnect Summit
+          </a>
+
+          <!-- Liens de navigation -->
+          <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="nav-link">Accueil</a></li>
+            <li>
+              <a
+                href="programme.html"
+                class="nav-link active"
+                aria-current="page"
+                >Programme</a
+              >
+            </li>
+            <li>
+              <a href="intervenants.html" class="nav-link">Intervenants</a>
+            </li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+
+          <!-- Actions navbar -->
+          <div class="nav-actions">
+            <button
+              id="darkModeToggle"
+              class="btn-dark-mode"
+              aria-label="Activer le mode sombre"
+            >
+              <i class="bi bi-moon-fill" aria-hidden="true"></i>
+            </button>
+            <button
+              id="hamburger"
+              class="btn-hamburger"
+              aria-label="Ouvrir le menu"
+              aria-expanded="false"
+              aria-controls="navLinks"
+            >
+              <i class="bi bi-list" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
 
     <!-- CONTENU PRINCIPAL -->
-    <main></main>
+    <main>
+      <!-- HERO INTERNE -->
+      <!--
+        Bannière pleine largeur
+        Fil d'Ariane : Accueil > Programme
+        Titre H1 obligatoire sur chaque page
+      -->
+      <section class="page-hero">
+        <div class="page-hero-content">
+          <!-- Fil d'Ariane -->
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <a href="index.html">Accueil</a>
+            <span aria-hidden="true"> &rsaquo; </span>
+            <span aria-current="page">Programme</span>
+          </nav>
 
+          <h1 class="page-hero-title">Programme de l'événement</h1>
+          <p class="page-hero-subtitle">
+            3 jours de conférences, ateliers et networking — 15, 16 & 17 Mars
+            2027 — Dakar, Sénégal
+          </p>
+        </div>
+      </section>
+
+      <!-- ONGLETS 3 JOURS -->
+      <!--
+        3 onglets gérés par JavaScript dans main.js
+        Clic sur un onglet → affiche le planning du jour
+        Sans rechargement de page
+        data-jour="1/2/3" ciblé par JavaScript
+      -->
+      <section class="programme-section animate-section" id="programme">
+        <div class="section-container">
+          <!-- Boutons onglets -->
+          <div
+            class="tabs-container"
+            role="tablist"
+            aria-label="Programme par jour"
+          >
+            <button
+              class="tab-btn active"
+              id="tab-jour1"
+              data-jour="1"
+              role="tab"
+              aria-selected="true"
+              aria-controls="planning-jour1"
+            >
+              <i class="bi bi-calendar3" aria-hidden="true"></i>
+              Jour 1 — 15 Mars
+            </button>
+
+            <button
+              class="tab-btn"
+              id="tab-jour2"
+              data-jour="2"
+              role="tab"
+              aria-selected="false"
+              aria-controls="planning-jour2"
+            >
+              <i class="bi bi-calendar3" aria-hidden="true"></i>
+              Jour 2 — 16 Mars
+            </button>
+
+            <button
+              class="tab-btn"
+              id="tab-jour3"
+              data-jour="3"
+              role="tab"
+              aria-selected="false"
+              aria-controls="planning-jour3"
+            >
+              <i class="bi bi-calendar3" aria-hidden="true"></i>
+              Jour 3 — 17 Mars
+            </button>
+          </div>
+
+          <!-- PLANNING JOUR 1 -->
+          <!--
+            Tableau HTML stylisé
+            Colonnes : Heure, Session, Intervenant, Salle
+            Minimum 5 sessions par jour
+            Alternance de couleurs définie dans style.css
+            display: block par défaut, JS cache les autres
+          -->
+          <div
+            class="planning"
+            id="planning-jour1"
+            role="tabpanel"
+            aria-labelledby="tab-jour1"
+          >
+            <h2 class="planning-title">
+              <i class="bi bi-sun-fill" aria-hidden="true"></i>
+              Jour 1 — Ouverture & IA
+            </h2>
+
+            <div class="table-wrapper">
+              <table class="planning-table">
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      <i class="bi bi-clock" aria-hidden="true"></i> Heure
+                    </th>
+                    <th scope="col">
+                      <i class="bi bi-journal-text" aria-hidden="true"></i>
+                      Session
+                    </th>
+                    <th scope="col">
+                      <i class="bi bi-person-fill" aria-hidden="true"></i>
+                      Intervenant
+                    </th>
+                    <th scope="col">
+                      <i class="bi bi-building" aria-hidden="true"></i> Salle
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="row-special">
+                    <td>08h00 — 09h00</td>
+                    <td>Accueil & Enregistrement des participants</td>
+                    <td>Équipe AfriConnect</td>
+                    <td>Hall Principal</td>
+                  </tr>
+                  <tr>
+                    <td>09h00 — 09h30</td>
+                    <td>Cérémonie d'ouverture officielle</td>
+                    <td>Amadou Diallo</td>
+                    <td>Grande Salle</td>
+                  </tr>
+                  <tr>
+                    <td>09h30 — 10h30</td>
+                    <td>Keynote : L'IA au service de l'Afrique</td>
+                    <td>Grace Otieno</td>
+                    <td>Grande Salle</td>
+                  </tr>
+                  <tr>
+                    <td>10h30 — 11h00</td>
+                    <td>Pause café & Networking</td>
+                    <td>—</td>
+                    <td>Foyer</td>
+                  </tr>
+                  <tr>
+                    <td>11h00 — 12h00</td>
+                    <td>Atelier : Machine Learning pour débutants</td>
+                    <td>Ibrahim Konaté</td>
+                    <td>Salle B</td>
+                  </tr>
+                  <tr>
+                    <td>12h00 — 13h30</td>
+                    <td>Déjeuner & Rencontres B2B</td>
+                    <td>—</td>
+                    <td>Restaurant</td>
+                  </tr>
+                  <tr>
+                    <td>13h30 — 14h30</td>
+                    <td>Conférence : Fintech et inclusion financière</td>
+                    <td>Youssef Ben Salah</td>
+                    <td>Grande Salle</td>
+                  </tr>
+                  <tr>
+                    <td>14h30 — 15h30</td>
+                    <td>Table ronde : Les femmes dans la tech africaine</td>
+                    <td>Ngozi Adeyemi & invitées</td>
+                    <td>Salle A</td>
+                  </tr>
+                  <tr>
+                    <td>15h30 — 16h00</td>
+                    <td>Pause & Démonstrations startups</td>
+                    <td>—</td>
+                    <td>Espace Expo</td>
+                  </tr>
+                  <tr>
+                    <td>16h00 — 17h00</td>
+                    <td>Panel : Investir dans les startups africaines</td>
+                    <td>Aïssata Camara</td>
+                    <td>Grande Salle</td>
+                  </tr>
+                  <tr class="row-special">
+                    <td>18h00 — 20h00</td>
+                    <td>Cocktail de bienvenue</td>
+                    <td>—</td>
+                    <td>Terrasse</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!--PLANNING JOUR 2-->
+          <!--
+            display: none par défaut — JavaScript l'affiche au clic
+          -->
+          <div
+            class="planning"
+            id="planning-jour2"
+            role="tabpanel"
+            aria-labelledby="tab-jour2"
+            style="display: none"
+          >
+            <h2 class="planning-title">
+              <i class="bi bi-lightning-fill" aria-hidden="true"></i>
+              Jour 2 — Tech & Innovation
+            </h2>
+
+            <div class="table-wrapper">
+              <table class="planning-table">
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      <i class="bi bi-clock" aria-hidden="true"></i> Heure
+                    </th>
+                    <th scope="col">
+                      <i class="bi bi-journal-text" aria-hidden="true"></i>
+                      Session
+                    </th>
+                    <th scope="col">
+                      <i class="bi bi-person-fill" aria-hidden="true"></i>
+                      Intervenant
+                    </th>
+                    <th scope="col">
+                      <i class="bi bi-building" aria-hidden="true"></i> Salle
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>09h00 — 10h00</td>
+                    <td>
+                      Keynote : Blockchain et identité numérique en Afrique
+                    </td>
+                    <td>Kofi Mensah</td>
+                    <td>Grande Salle</td>
+                  </tr>
+                  <tr>
+                    <td>10h00 — 11h00</td>
+                    <td>Atelier : Développement d'applications mobiles</td>
+                    <td>Fatima Touré</td>
+                    <td>Salle Informatique</td>
+                  </tr>
+                  <tr>
+                    <td>11h00 — 11h30</td>
+                    <td>Pause café & Networking</td>
+                    <td>—</td>
+                    <td>Foyer</td>
+                  </tr>
+                  <tr>
+                    <td>11h30 — 12h30</td>
+                    <td>
+                      Conférence : Cybersécurité pour les entreprises africaines
+                    </td>
+                    <td>Omar Sy</td>
+                    <td>Grande Salle</td>
+                  </tr>
+                  <tr>
+                    <td>12h30 — 14h00</td>
+                    <td>Déjeuner & Espace Expo startups</td>
+                    <td>—</td>
+                    <td>Restaurant & Expo</td>
+                  </tr>
+                  <tr>
+                    <td>14h00 — 15h00</td>
+                    <td>Hackathon : Solutions pour l'agriculture africaine</td>
+                    <td>Équipes participantes</td>
+                    <td>Salle B & C</td>
+                  </tr>
+                  <tr>
+                    <td>15h00 — 16h00</td>
+                    <td>
+                      Panel : EdTech — Révolutionner l'éducation en Afrique
+                    </td>
+                    <td>Mariama Baldé</td>
+                    <td>Salle A</td>
+                  </tr>
+                  <tr>
+                    <td>16h00 — 17h00</td>
+                    <td>Présentation des projets Hackathon</td>
+                    <td>Participants & Jury</td>
+                    <td>Grande Salle</td>
+                  </tr>
+                  <tr class="row-special">
+                    <td>17h00 — 18h00</td>
+                    <td>Remise des prix Hackathon</td>
+                    <td>Jury AfriConnect</td>
+                    <td>Grande Salle</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!--PLANNING JOUR 3-->
+          <!--
+            display: none par défaut — JavaScript l'affiche au clic
+          -->
+          <div
+            class="planning"
+            id="planning-jour3"
+            role="tabpanel"
+            aria-labelledby="tab-jour3"
+            style="display: none"
+          >
+            <h2 class="planning-title">
+              <i class="bi bi-star-fill" aria-hidden="true"></i>
+              Jour 3 — Business & Clôture
+            </h2>
+
+            <div class="table-wrapper">
+              <table class="planning-table">
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      <i class="bi bi-clock" aria-hidden="true"></i> Heure
+                    </th>
+                    <th scope="col">
+                      <i class="bi bi-journal-text" aria-hidden="true"></i>
+                      Session
+                    </th>
+                    <th scope="col">
+                      <i class="bi bi-person-fill" aria-hidden="true"></i>
+                      Intervenant
+                    </th>
+                    <th scope="col">
+                      <i class="bi bi-building" aria-hidden="true"></i> Salle
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>09h00 — 10h00</td>
+                    <td>Keynote : L'avenir du travail numérique en Afrique</td>
+                    <td>Ngozi Adeyemi</td>
+                    <td>Grande Salle</td>
+                  </tr>
+                  <tr>
+                    <td>10h00 — 11h00</td>
+                    <td>
+                      Atelier : Pitch de startup — Convaincre les investisseurs
+                    </td>
+                    <td>Amadou Diallo</td>
+                    <td>Salle A</td>
+                  </tr>
+                  <tr>
+                    <td>11h00 — 11h30</td>
+                    <td>Pause café</td>
+                    <td>—</td>
+                    <td>Foyer</td>
+                  </tr>
+                  <tr>
+                    <td>11h30 — 12h30</td>
+                    <td>
+                      Conférence : Green Tech — Technologie et développement
+                      durable
+                    </td>
+                    <td>Ama Boateng</td>
+                    <td>Grande Salle</td>
+                  </tr>
+                  <tr>
+                    <td>12h30 — 14h00</td>
+                    <td>Déjeuner de clôture & Networking final</td>
+                    <td>—</td>
+                    <td>Restaurant</td>
+                  </tr>
+                  <tr>
+                    <td>14h00 — 15h30</td>
+                    <td>
+                      Forum investisseurs — Startups africaines prometteuses
+                    </td>
+                    <td>Panel d'investisseurs</td>
+                    <td>Salle B</td>
+                  </tr>
+                  <tr>
+                    <td>15h30 — 16h30</td>
+                    <td>Cérémonie de clôture & Remise des prix AfriConnect</td>
+                    <td>Comité organisateur</td>
+                    <td>Grande Salle</td>
+                  </tr>
+                  <tr class="row-special">
+                    <td>16h30 — 17h00</td>
+                    <td>Discours de clôture & Rendez-vous 2028</td>
+                    <td>Amadou Diallo</td>
+                    <td>Grande Salle</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- SECTION THÉMATIQUES -->
+      <!--
+        4 thématiques en CSS Grid 2x2
+        Chaque thématique : icône + titre + description courte
+        Animation au scroll via IntersectionObserver
+      -->
+      <section class="themes-section animate-section" id="thematiques">
+        <div class="section-container">
+          <h2 class="section-title">Thématiques de l'édition 2027</h2>
+          <p class="section-subtitle">
+            4 grandes thématiques pour couvrir l'écosystème numérique africain
+          </p>
+
+          <div class="themes-grid">
+            <article class="theme-card">
+              <i class="bi bi-robot theme-icon" aria-hidden="true"></i>
+              <h3>Intelligence Artificielle</h3>
+              <p>
+                IA générative, Machine Learning appliqué aux problématiques
+                africaines et solutions intelligentes pour le continent.
+              </p>
+            </article>
+
+            <article class="theme-card">
+              <i
+                class="bi bi-currency-exchange theme-icon"
+                aria-hidden="true"
+              ></i>
+              <h3>FinTech & Inclusion</h3>
+              <p>
+                Paiements mobiles, services financiers inclusifs et solutions
+                blockchain pour bancariser les populations non desservies.
+              </p>
+            </article>
+
+            <article class="theme-card">
+              <i
+                class="bi bi-mortarboard-fill theme-icon"
+                aria-hidden="true"
+              ></i>
+              <h3>EdTech & Formation</h3>
+              <p>
+                Révolution de l'éducation numérique, plateformes d'apprentissage
+                et formations aux métiers du numérique en Afrique.
+              </p>
+            </article>
+
+            <article class="theme-card">
+              <i class="bi bi-tree-fill theme-icon" aria-hidden="true"></i>
+              <h3>Green Tech</h3>
+              <p>
+                Technologies vertes, énergie solaire connectée et solutions
+                numériques pour un développement durable en Afrique.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
     <!-- FOOTER -->
-    <footer></footer>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3 class="footer-title">
+            <i class="bi bi-globe-africa" aria-hidden="true"></i>
+            AfriConnect Summit
+          </h3>
+          <p class="footer-desc">
+            Le sommet tech panafricain annuel qui connecte les talents, les
+            idées et les opportunités du continent africain.
+          </p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Twitter AfriConnect Summit">
+              <i class="bi bi-twitter-x" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn AfriConnect Summit">
+              <i class="bi bi-linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="Instagram AfriConnect Summit">
+              <i class="bi bi-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="YouTube AfriConnect Summit">
+              <i class="bi bi-youtube" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
 
+        <div class="footer-col">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="programme.html">Programme</a></li>
+            <li><a href="intervenants.html">Intervenants</a></li>
+            <li><a href="contact.html">Contact & Inscription</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Informations</h3>
+          <ul class="footer-info">
+            <li>
+              <i class="bi bi-calendar3" aria-hidden="true"></i>
+              15, 16 & 17 Mars 2027
+            </li>
+            <li>
+              <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+              Centre de Conférences Abdou Diouf, Dakar
+            </li>
+            <li>
+              <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+              contact@africonnect-summit.com
+            </li>
+            <li>
+              <i class="bi bi-telephone-fill" aria-hidden="true"></i>
+              +221 77 000 00 00
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; <span id="currentYear"></span> AfriConnect Summit. Tous droits
+          réservés.
+        </p>
+      </div>
+    </footer>
     <!-- Bouton retour en haut -->
-    <button id="backToTop" aria-label="Retour en haut"></button>
+    <button id="backToTop" aria-label="Retour en haut de la page">
+      <i class="bi bi-arrow-up" aria-hidden="true"></i>
+    </button>
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AfriConnect Summit 2027 — Contact</title>
+    <title>AfriConnect Summit 2026 — Contact</title>
     <!-- Bootstrap Icons via CDN -->
     <link
       rel="stylesheet"
@@ -19,17 +19,519 @@
   </head>
   <body>
     <!-- NAVBAR -->
-    <header></header>
+    <header>
+      <nav class="navbar" id="navbar">
+        <div class="nav-container">
+          <a
+            href="index.html"
+            class="nav-logo"
+            aria-label="Accueil AfriConnect Summit"
+          >
+            <i class="bi bi-globe-africa" aria-hidden="true"></i>
+            AfriConnect Summit
+          </a>
+
+          <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="nav-link">Accueil</a></li>
+            <li><a href="programme.html" class="nav-link">Programme</a></li>
+            <li>
+              <a href="intervenants.html" class="nav-link">Intervenants</a>
+            </li>
+            <li>
+              <a href="contact.html" class="nav-link active" aria-current="page"
+                >Contact</a
+              >
+            </li>
+          </ul>
+
+          <div class="nav-actions">
+            <button
+              id="darkModeToggle"
+              class="btn-dark-mode"
+              aria-label="Activer le mode sombre"
+            >
+              <i class="bi bi-moon-fill" aria-hidden="true"></i>
+            </button>
+            <button
+              id="hamburger"
+              class="btn-hamburger"
+              aria-label="Ouvrir le menu"
+              aria-expanded="false"
+              aria-controls="navLinks"
+            >
+              <i class="bi bi-list" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
 
     <!-- CONTENU PRINCIPAL -->
-    <main></main>
+    <main>
+      <!-- HERO INTERNE -->
+      <section class="page-hero">
+        <div class="page-hero-content">
+          <!-- Fil d'Ariane -->
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <a href="index.html">Accueil</a>
+            <span aria-hidden="true"> &rsaquo; </span>
+            <span aria-current="page">Contact</span>
+          </nav>
+
+          <h1 class="page-hero-title">Inscription & Contact</h1>
+          <p class="page-hero-subtitle">
+            Rejoignez AfriConnect Summit 2027 — Places limitées à 1 200
+            participants. Inscrivez-vous dès maintenant !
+          </p>
+        </div>
+      </section>
+      <!-- SECTION FORMULAIRE + INFOS -->
+      <section class="contact-section animate-section" id="contact">
+        <div class="section-container">
+          <div class="contact-layout">
+            <!-- FORMULAIRE D'INSCRIPTION -->
+            <!--
+              Deux colonnes Flexbox : formulaire à gauche, infos à droite
+              novalidate → JavaScript gère la validation (pas le navigateur)
+              Validation JavaScript obligatoire :
+              - tous les champs requis
+              - email vérifié par regex
+              - téléphone minimum 8 chiffres
+              - message minimum 20 caractères
+              - retour visuel par champ (bordure rouge/verte + message d'erreur)
+              - message de succès stylisé après soumission valide
+              - réinitialisation du formulaire après succès
+            -->
+            <div class="form-wrapper">
+              <h2 class="form-title">
+                <i class="bi bi-ticket-perforated-fill" aria-hidden="true"></i>
+                Formulaire d'inscription
+              </h2>
+
+              <form id="inscriptionForm" novalidate></form>
+              <!-- Nom complet -->
+              <div class="form-group">
+                <label for="nom" class="form-label">
+                  Nom complet
+                  <span class="required" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="nom"
+                  name="nom"
+                  class="form-input"
+                  placeholder="Ex : Ibrahima SANOH"
+                  required
+                  aria-required="true"
+                />
+                <!-- Zone d'erreur — remplie par JavaScript -->
+                <span class="form-error" id="nom-error" role="alert"></span>
+              </div>
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email" class="form-label">
+                  Adresse email
+                  <span class="required" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="Ex : ibrahima@email.com"
+                  required
+                  aria-required="true"
+                />
+                <span class="form-error" id="email-error" role="alert"></span>
+              </div>
+              <!-- Téléphone -->
+              <div class="form-group">
+                <label for="telephone" class="form-label">
+                  Téléphone <span class="required" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="telephone"
+                  name="telephone"
+                  class="form-input"
+                  placeholder="Ex : +221 77 000 00 00"
+                  required
+                  aria-required="true"
+                />
+                <span
+                  class="form-error"
+                  id="telephone-error"
+                  role="alert"
+                ></span>
+              </div>
+              <!-- Type de participation -->
+              <div class="form-group">
+                <label for="participation" class="form-label">
+                  Type de participation
+                  <span class="required" aria-hidden="true">*</span>
+                </label>
+                <select
+                  id="participation"
+                  name="participation"
+                  class="form-select"
+                  required
+                  aria-required="true"
+                >
+                  <option value="" disabled selected>
+                    Choisissez votre profil
+                  </option>
+                  <option value="developpeur">Développeur / Ingénieur</option>
+                  <option value="entrepreneur">Entrepreneur / Fondateur</option>
+                  <option value="investisseur">Investisseur / VC</option>
+                  <option value="etudiant">Étudiant / Chercheur</option>
+                  <option value="manager">Manager / Directeur</option>
+                  <option value="autre">Autre</option>
+                </select>
+                <span
+                  class="form-error"
+                  id="participation-error"
+                  role="alert"
+                ></span>
+              </div>
+              <!-- Pays africain d'origine -->
+              <div class="form-group">
+                <label for="pays" class="form-label">
+                  Pays <span class="required" aria-hidden="true">*</span>
+                </label>
+                <select
+                  id="pays"
+                  name="pays"
+                  class="form-select"
+                  required
+                  aria-required="true"
+                >
+                  <option value="" disabled selected>
+                    Sélectionnez votre pays
+                  </option>
+                  <option value="senegal">Sénégal</option>
+                  <option value="guinee">Guinée</option>
+                  <option value="mali">Mali</option>
+                  <option value="cote-ivoire">Côte d'Ivoire</option>
+                  <option value="ghana">Ghana</option>
+                  <option value="nigeria">Nigeria</option>
+                  <option value="kenya">Kenya</option>
+                  <option value="maroc">Maroc</option>
+                  <option value="tunisie">Tunisie</option>
+                  <option value="cameroun">Cameroun</option>
+                  <option value="autre-afrique">Autre pays africain</option>
+                  <option value="hors-afrique">Hors Afrique</option>
+                </select>
+                <span class="form-error" id="pays-error" role="alert"></span>
+              </div>
+              <!-- Message / Motivation -->
+              <div class="form-group">
+                <label for="message" class="form-label">
+                  Message / Motivation
+                  <span class="required" aria-hidden="true">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form-textarea"
+                  rows="5"
+                  placeholder="Décrivez votre motivation à participer (minimum 20 caractères)..."
+                  required
+                  aria-required="true"
+                  minlength="20"
+                ></textarea>
+                <span class="form-error" id="message-error" role="alert"></span>
+              </div>
+              <!-- Bouton d'envoi -->
+              <button type="submit" class="btn btn-primary btn-submit">
+                <i class="bi bi-send-fill" aria-hidden="true"></i>
+                Envoyer ma candidature
+              </button>
+              <!-- Message de succès (caché par défaut, affiché par JS) -->
+              <div
+                class="form-success"
+                id="successMessage"
+                role="status"
+                aria-live="polite"
+                style="display: none"
+              >
+                <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                <div>
+                  <strong>Candidature envoyée avec succès !</strong>
+                  <p>
+                    Nous vous contacterons dans les 48h pour confirmer votre
+                    inscription.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!--  INFORMATIONS DE CONTACT  -->
+            <aside class="contact-info">
+              <h2 class="contact-info-title">
+                <i class="bi bi-info-circle-fill" aria-hidden="true"></i>
+                Informations pratiques
+              </h2>
+
+              <ul class="contact-info-list">
+                <li>
+                  <i class="bi bi-calendar3-event-fill" aria-hidden="true"></i>
+                  <div>
+                    <strong>Dates</strong>
+                    <span>15, 16 & 17 Mars 2027</span>
+                  </div>
+                </li>
+                <li>
+                  <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                  <div>
+                    <strong>Lieu</strong>
+                    <span
+                      >Centre de Conférences Abdou Diouf<br />Dakar,
+                      Sénégal</span
+                    >
+                  </div>
+                </li>
+                <li>
+                  <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+                  <div>
+                    <strong>Email</strong>
+                    <span>contact@africonnect-summit.com</span>
+                  </div>
+                </li>
+                <li>
+                  <i class="bi bi-telephone-fill" aria-hidden="true"></i>
+                  <div>
+                    <strong>Téléphone</strong>
+                    <span>+221 77 000 00 00</span>
+                  </div>
+                </li>
+                <li>
+                  <i class="bi bi-clock-fill" aria-hidden="true"></i>
+                  <div>
+                    <strong>Horaires</strong>
+                    <span>08h00 — 20h00 chaque jour</span>
+                  </div>
+                </li>
+              </ul>
+
+              <!-- Carte Google Maps -->
+              <!--
+                iframe intégré pointant vers Dakar, Sénégal
+                title obligatoire pour l'accessibilité
+                loading="lazy" pour les performances
+              -->
+              <div class="map-wrapper">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15437.024!2d-17.4676!3d14.7278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec173d4bf647c79%3A0xd4e74bae4c6b5a55!2sDakar%2C%20S%C3%A9n%C3%A9gal!5e0!3m2!1sfr!2sfr!4v1234567890"
+                  width="100"
+                  height="250"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="Localisation du Centre de Conférences Abdou Diouf à Dakar, Sénégal"
+                ></iframe>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+      <!-- FAQ EN ACCORDÉON CSS PUR -->
+      <!--
+        IMPORTANT : accordéon fonctionnel en CSS UNIQUEMENT
+        Technique avec <details> et <summary> HTML natif
+        OU technique avec :focus-within / :checked
+        AUCUN JavaScript pour cette partie
+        Animation d'ouverture avec transition CSS
+      -->
+      <section class="faq-section animate-section" id="faq">
+        <div class="section-container">
+          <h2 class="section-title">Questions fréquentes</h2>
+          <p class="section-subtitle">
+            Tout ce que vous devez savoir avant de vous inscrire
+          </p>
+
+          <div class="faq-container">
+            <!-- Question 1 -->
+            <!--
+              <details> et <summary> = accordéon HTML natif
+              Fonctionne SANS JavaScript
+              L'attribut open est géré par le navigateur
+              transition CSS sur le contenu pour l'animation
+            -->
+            <details class="faq-item">
+              <summary class="faq-question">
+                <i class="bi bi-question-circle-fill" aria-hidden="true"></i>
+                Comment s'inscrire à AfriConnect Summit 2027 ?
+                <i
+                  class="bi bi-chevron-down faq-chevron"
+                  aria-hidden="true"
+                ></i>
+              </summary>
+              <div class="faq-reponse">
+                <p>
+                  L'inscription se fait via le formulaire en ligne sur cette
+                  page. Remplissez tous les champs obligatoires et soumettez
+                  votre candidature. Vous recevrez une confirmation par email
+                  dans les 48 heures. Les places sont limitées à 1 200
+                  participants, inscrivez-vous rapidement !
+                </p>
+              </div>
+            </details>
+            <!-- Question 2 -->
+            <details class="faq-item">
+              <summary class="faq-question">
+                <i class="bi bi-question-circle-fill" aria-hidden="true"></i>
+                Quel est le coût de participation ?
+                <i
+                  class="bi bi-chevron-down faq-chevron"
+                  aria-hidden="true"
+                ></i>
+              </summary>
+              <div class="faq-reponse">
+                <p>
+                  AfriConnect Summit 2027 propose plusieurs tarifs adaptés :
+                  Pass Étudiant (gratuit sur dossier), Pass Professionnel (50
+                  000 FCFA), Pass VIP (150 000 FCFA avec accès aux événements
+                  privés). Des bourses de participation sont disponibles pour
+                  les talents africains méritants.
+                </p>
+              </div>
+            </details>
+            <!-- Question 3 -->
+            <details class="faq-item">
+              <summary class="faq-question">
+                <i class="bi bi-question-circle-fill" aria-hidden="true"></i>
+                Quels sont les hébergements disponibles à Dakar ?
+                <i
+                  class="bi bi-chevron-down faq-chevron"
+                  aria-hidden="true"
+                ></i>
+              </summary>
+              <div class="faq-reponse">
+                <p>
+                  Des partenariats avec des hôtels à proximité du centre de
+                  conférences permettent aux participants de bénéficier de
+                  tarifs préférentiels. La liste des hôtels partenaires vous
+                  sera communiquée après confirmation de votre inscription. Des
+                  navettes seront organisées depuis les principaux hôtels.
+                </p>
+              </div>
+            </details>
+            <!-- Question 4 -->
+            <details class="faq-item">
+              <summary class="faq-question">
+                <i class="bi bi-question-circle-fill" aria-hidden="true"></i>
+                Peut-on présenter sa startup lors de l'événement ?
+                <i
+                  class="bi bi-chevron-down faq-chevron"
+                  aria-hidden="true"
+                ></i>
+              </summary>
+              <div class="faq-reponse">
+                <p>
+                  Oui ! AfriConnect Summit 2027 propose un espace "Startup Expo"
+                  avec des stands disponibles pour les startups africaines. Un
+                  concours de pitch devant un jury d'investisseurs est organisé
+                  le Jour 2. Mentionnez votre intérêt dans le champ message du
+                  formulaire.
+                </p>
+              </div>
+            </details>
+            <!-- Question 5 -->
+            <details class="faq-item">
+              <summary class="faq-question">
+                <i class="bi bi-question-circle-fill" aria-hidden="true"></i>
+                L'événement sera-t-il diffusé en ligne ?
+                <i
+                  class="bi bi-chevron-down faq-chevron"
+                  aria-hidden="true"
+                ></i>
+              </summary>
+              <div class="faq-reponse">
+                <p>
+                  Les keynotes principales seront diffusées en direct sur notre
+                  chaîne YouTube. Un accès digital au replay de toutes les
+                  conférences sera disponible pour les participants inscrits
+                  pendant 30 jours après l'événement.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <!-- FOOTER -->
-    <footer></footer>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3 class="footer-title">
+            <i class="bi bi-globe-africa" aria-hidden="true"></i>
+            AfriConnect Summit
+          </h3>
+          <p class="footer-desc">
+            Le sommet tech panafricain annuel qui connecte les talents, les
+            idées et les opportunités du continent africain.
+          </p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Twitter AfriConnect Summit">
+              <i class="bi bi-twitter-x" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn AfriConnect Summit">
+              <i class="bi bi-linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="Instagram AfriConnect Summit">
+              <i class="bi bi-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="YouTube AfriConnect Summit">
+              <i class="bi bi-youtube" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
 
+        <div class="footer-col">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="programme.html">Programme</a></li>
+            <li><a href="intervenants.html">Intervenants</a></li>
+            <li><a href="contact.html">Contact & Inscription</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Informations</h3>
+          <ul class="footer-info">
+            <li>
+              <i class="bi bi-calendar3" aria-hidden="true"></i>
+              15, 16 & 17 Mars 2027
+            </li>
+            <li>
+              <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+              Centre de Conférences Abdou Diouf, Dakar
+            </li>
+            <li>
+              <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+              contact@africonnect-summit.com
+            </li>
+            <li>
+              <i class="bi bi-telephone-fill" aria-hidden="true"></i>
+              +221 77 000 00 00
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; <span id="currentYear"></span> AfriConnect Summit. Tous droits
+          réservés.
+        </p>
+      </div>
+    </footer>
     <!-- Bouton retour en haut -->
-    <button id="backToTop" aria-label="Retour en haut"></button>
-
+    <button id="backToTop" aria-label="Retour en haut de la page">
+      <i class="bi bi-arrow-up" aria-hidden="true"></i>
+    </button>
     <!-- JavaScript -->
     <script src="js/main.js"></script>
   </body>
