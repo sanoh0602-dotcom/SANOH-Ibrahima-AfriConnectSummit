@@ -1,0 +1,462 @@
+/*Commit 3: Variables CSS, reset, navbar */
+
+/*IMPORTATION DES GOOGLE FONTS*/
+
+/*
+   @import charge les polices depuis Google Fonts.
+   Syne : police expressive pour les titres (poids 400, 700, 800)
+   Inter : police lisible pour le corps du texte (poids 400, 500, 600)
+   display=swap : affiche une police système en attendant le chargement
+*/
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500;600&display=swap");
+
+/*VARIABLES CSS — MINIMUM 8 DANS :root */
+
+/*:root cible l'élément racine HTML.
+Les variables définies ici sont accessibles partout via var().
+Avantage : changer une couleur ici la change sur tout le site.
+Palette : maximum 4 couleurs principales demandées dans le sujet.*/
+
+:root {
+  /* --- COULEUR 1 : Primaire (vert émeraude africain) --- */
+  --color-primary: #606c38;
+  /* --- COULEUR 2 : Secondaire (bleu nuit profond) --- */
+  --color-secondary: #283618;
+  /* --- COULEUR 3 : Fond de page (blanc cassé) --- */
+  --color-background: #fefae0;
+  /* --- COULEUR 4 : Texte principal --- */
+  --color-text: #000; /* Noir pour le texte principal */
+
+  /* --- VARIANTES --- */
+  /* Couleur d'accent (vert plus foncé pour les survols) */
+  --color-accent: #bc6c25;
+
+  /* Texte secondaire (gris moyen) */
+  --color-text-secondary: #64748b;
+
+  /* Bordures légères */
+  --color-border: #e2e8f0;
+
+  /* Fond des cartes */
+  --color-card: #ffffff;
+
+  /* --- POLICES --- */
+  /* Variable 9 : police des titres */
+  --font-heading: "Syne", sans-serif;
+
+  /* Variable 10 : police du corps */
+  --font-body: "Inter", sans-serif;
+
+  /* --- ESPACEMENTS --- */
+  /* Variable 11 : padding des sections */
+  --spacing-section: 80px;
+
+  /* Variable 12 : padding des cartes */
+  --spacing-card: 24px;
+
+  /* --- EFFETS --- */
+  /* Variable 13 : ombre standard */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+  /* Variable 14 : ombre au survol */
+  --shadow-hover: 0 12px 40px rgba(16, 185, 129, 0.15);
+
+  /* Variable 15 : rayon d'arrondi */
+  --border-radius: 12px;
+
+  /* Variable 16 : durée des transitions */
+  --transition: 0.5s ease;
+}
+/*
+DARK MODE — Variables sombres
+Activé par JavaScript via [data-theme="dark"] sur le body */
+
+/*Quand JS fait : document.body.setAttribute('data-theme', 'dark')
+Le sélecteur [data-theme="dark"] s'active et surcharge les variables.
+Toutes les couleurs changent automatiquement partout sur le site.*/
+
+[data-theme="dark"] {
+  --color-background: #0f172a;
+  --color-text: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-border: #1e293b;
+  --color-card: #1e293b;
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 12px 40px rgba(16, 185, 129, 0.2);
+}
+/* Fond et texte du body en dark mode */
+[data-theme="dark"] body {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+/* Navbar en dark mode */
+[data-theme="dark"] .navbar {
+  background-color: #0f172a;
+  border-bottom: 1px solid #1e293b;
+}
+
+[data-theme="dark"] .nav-link {
+  color: #cbd5e1 !important;
+}
+
+/* Cartes en dark mode */
+[data-theme="dark"] .intervenant-card,
+[data-theme="dark"] .speaker-card,
+[data-theme="dark"] .why-card,
+[data-theme="dark"] .theme-card,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .sponsor-card,
+[data-theme="dark"] .form-wrapper,
+[data-theme="dark"] .contact-info,
+[data-theme="dark"] .faq-item {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+/* Inputs en dark mode */
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .form-textarea {
+  background-color: #0f172a;
+  color: #e2e8f0;
+  border-color: #334155;
+}
+
+/* Titres en dark mode */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 {
+  color: #f1f5f9;
+}
+
+/* Page hero en dark mode */
+[data-theme="dark"] .page-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+/* Table en dark mode */
+[data-theme="dark"] .planning-table th {
+  background-color: #1e293b;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .planning-table tr:nth-child(even) {
+  background-color: #1a2740;
+}
+
+[data-theme="dark"] .planning-table td {
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+/* FAQ en dark mode */
+[data-theme="dark"] .faq-question {
+  background-color: #1e293b;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .faq-reponse {
+  background-color: #263448;
+  color: #cbd5e1;
+}
+
+/*RESET CSS ET STYLES DE BASE*/
+/*box-sizing: border-box → padding et bordure inclus dans la largeur.
+margin: 0; padding: 0 → supprime les valeurs par défaut des navigateurs.*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/*scroll-behavior: smooth → défilement fluide sur les liens ancres.*/
+html {
+  scroll-behavior: smooth;
+}
+/*Styles de base du document :
+font-family → Inter pour tout le texte
+color → couleur du texte via variable
+background-color → fond de page via variable
+line-height: 1.6 → interligne recommandée pour la lisibilité
+padding-top: 70px → compense la navbar fixe (fixed) qui sort du flux*/
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  line-height: 1.6;
+  padding-top: 70px;
+  transition:
+    background-color var(--transition),
+    color var(--transition);
+}
+/* Tous les titres utilisent Syne, en gras */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+/* Paragraphes : espace en bas */
+p {
+  margin-bottom: 1rem;
+  color: var(
+    --color-text-secondary
+  ); /* Texte secondaire pour les paragraphes */
+}
+
+/* Liens : couleur primaire, pas de soulignement */
+a {
+  color: var(--color-primary);
+  text-decoration: none; /* Supprime le soulignement par défaut */
+  transition: color var(--transition); /* Transition douce pour le changement de couleur */
+}
+/* Liens au survol : couleur d'accent */
+a:hover {
+  color: var(--color-accent); /* Change la couleur au survol */
+}
+/* Images responsives */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Supprime l'espace en dessous des images */
+}
+/* Suppression des puces */
+ul {
+  list-style: none;
+}
+/*CONTENEURS RÉUTILISABLES*/
+/*.section-container → centre le contenu avec une largeur max.
+margin: 0 auto → centrage horizontal.
+padding → espace sur les côtés sur petits écrans.*/
+.section-container {
+  max-width: 1200px; /* Largeur maximale du conteneur */
+  margin: 0 auto;
+  padding: 0 1.5rem; /* 24px de padding sur les côtés */
+}
+/* Titres et sous-titres de sections réutilisables */
+.section-title {
+  font-size: 2.25rem; /* 36px */
+  font-weight: 800; /* Très gras pour les titres */
+  color: var(--color-text); /* Couleur du texte via variable */
+  margin-bottom: 1rem; /* Espace en dessous du titre */
+  text-align: center; /* Centré horizontalement */
+}
+/* Sous-titres de sections réutilisables */
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+/*NAVBAR
+Logo visible, liens alignés, fixe en haut*/
+
+/*.navbar → barre de navigation fixe en haut.
+position: fixed → reste en place même au scroll.
+top: 0; left: 0; right: 0 → collée en haut, pleine largeur.
+z-index: 1000 → au-dessus de tout le contenu.
+background-color: blanc.
+box-shadow → ombre légère pour la détacher du contenu.
+transition → prépare l'animation au scroll (commit JS).*/
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 1rem 0;
+  transition: all var(--transition);
+}
+/*.navbar.scrolled → état après 80px de scroll.
+JavaScript ajoute cette classe.
+padding réduit → effet shrink (rétrécissement).*/
+.navbar.scrolled {
+  padding: 0.5rem 0; /* Réduit le padding pour un effet shrink */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+/*.nav-container → FLEXBOX USAGE 1
+display: flex → logo et liens côte à côte.
+justify-content: space-between → logo à gauche, liens à droite.
+align-items: center → alignement vertical.*/
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem; /* Espace entre le logo et les liens */
+}
+/*.nav-logo → logo de la marque dans la navbar.
+display: flex → icône et texte côte à côte.*/
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espace entre l'icône et le texte */
+  text-decoration: none; /* Supprime le soulignement du lien */
+  font-family: var(
+    --font-heading
+  ); /* Utilise la police des titres pour le logo */
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: color var(--transition); /* Transition douce pour le changement de couleur */
+}
+/* Icône du logo */
+.nav-logo i {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+/* Liens de navigation */
+.nav-logo:hover {
+  color: var(--color-primary);
+}
+
+/*.nav-links → liste des liens de navigation.
+display: flex → liens en ligne horizontale.
+FLEXBOX USAGE 2*/
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+}
+/*.nav-link → style de chaque lien.
+padding → zone de clic confortable.
+transition → animation couleur au survol.*/
+.nav-link {
+  color: var(--color-text);
+  font-weight: 500;
+  padding: 0.5rem 0.75rem; /* Zone de clic confortable */
+  border-radius: 8px; /* Bord arrondi pour un effet bouton */
+  transition: all var(--transition); /* Transition douce pour le changement de couleur et d'arrière-plan */
+  text-decoration: none;
+}
+/* Survol et état actif des liens de navigation */
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-primary);
+  background-color: rgba(16, 185, 129, 0.08);
+}
+/*.nav-actions → zone boutons (dark mode + hamburger).
+display: flex → boutons côte à côte.*/
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+/*.btn-dark-mode → bouton toggle dark/light mode.
+Transitions CSS sur tous les éléments interactifs.*/
+.btn-dark-mode {
+  background: none;
+  border: 2px solid var(--color-border); /* Bordure pour le bouton */
+  border-radius: 50%; /* Cercle parfait  pour le bouton */
+  width: 40px;
+  height: 40px;
+  display: flex; /* Flexbox pour centrer l'icône */
+  align-items: center;
+  justify-content: center; /* Centre l'icône */
+  cursor: pointer; /* Curseur pointeur pour indiquer que c'est cliquable */
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: all var(--transition);
+}
+.btn-dark-mode:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: rgba(16, 185, 129, 0.08);
+}
+/*.btn-hamburger → bouton menu mobile.
+Caché sur desktop, visible sur mobile via media query.*/
+.btn-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text);
+  padding: 0.25rem;
+  transition: color var(--transition);
+}
+.btn-hamburger:hover {
+  color: var(--color-primary);
+}
+/*BOUTONS RÉUTILISABLES*/
+
+/*.btn → style de base de tous les boutons.
+display: inline-flex → icône et texte alignés.
+transition → animation au survol.*/
+.btn {
+  display: inline-flex; /* Flexbox pour aligner icône et texte */
+  align-items: center; /* Centre verticalement le contenu */
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+/* Bouton principal : fond vert */
+.btn-primary {
+  background-color: var(--color-primary); /* Fond vert émeraude */
+  color: #ffffff;
+  border-color: var(--color-primary); /* Bordure assortie au fond */
+}
+/* Survol du bouton principal : fond vert foncé, léger soulèvement */
+.btn-primary:hover {
+  background-color: var(--color-accent); /* Vert plus foncé au survol */
+  border-color: var(--color-accent); /* Bordure assortie au fond */
+  color: #ffffff;
+  transform: translateY(
+    -2px
+  ); /* Légère translation vers le haut pour effet de soulèvement */
+  box-shadow: var(
+    --shadow-hover
+  ); /* Ombre au survol pour effet de profondeur */
+  text-decoration: none;
+}
+
+/* Bouton secondaire : transparent avec bordure */
+.btn-secondary {
+  background-color: transparent;
+  color: #000;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: #780000;
+  color: #780000;
+  transform: translateY(
+    -2px
+  ); /* Légère translation vers le haut pour effet de soulèvement */
+  box-shadow: var(
+    --shadow-hover
+  ); /* Ombre au survol pour effet de profondeur */
+  text-decoration: none;
+}
+/* Bouton submit formulaire : pleine largeur */
+.btn-submit {
+  /* Pleine largeur pour les formulaires */
+  width: 100%;
+  justify-content: center; /* Centre le texte et l'icône */
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
