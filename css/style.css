@@ -460,3 +460,1342 @@ transition → animation au survol.*/
   padding: 1rem 2rem;
   font-size: 1.1rem;
 }
+
+/* commit 4: Hero, accent color 
+layout sections + grid + flexbox */
+/*TEXTE ACCENT — couleur primaire sur le titre hero*/
+
+.text-accent {
+  color: var(--color-primary);
+}
+/*HERO SECTION — PAGE D'ACCUEIL*/
+
+/*
+.hero-section → section plein écran.
+min-height: 100vh → occupe au moins 100% de la hauteur d'écran.
+display: flex → texte et image côte à côte (FLEXBOX USAGE 3).
+background → dégradé sombre pour le contraste.
+animation → apparition au chargement définie ci-dessous.*/
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center; /* Centre verticalement le contenu */
+  justify-content: space-between;
+  gap: 3rem; /* Espace entre le texte et l'image */
+  padding: var(--spacing-section) 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto; /* Centre la section horizontalement */
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/*Animation CSS au chargement de la page.
+La section monte depuis le bas en apparaissant progressivement.*/
+
+@keyframes fadeInUp {
+  /* Nom de l'animation */
+  from {
+    /* État initial : invisible et décalé vers le bas */
+    opacity: 0; /* Transparence totale */
+    transform: translateY(40px); /* Décalage vers le bas de 40px */
+  }
+  to {
+    /* État final : visible et à sa position normale */
+    opacity: 1; /* Opacité totale */
+    transform: translateY(0); /* Position normale sans décalage */
+  }
+}
+/* Contenu textuel hero : moitié gauche */
+.hero-content {
+  flex: 1;
+  max-width: 600px; /* Limite la largeur du texte pour une meilleure lisibilité */
+}
+/* Badge événement */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--color-primary);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+/* Titre H1 du hero */
+.hero-title {
+  /* Titre principal de la section hero */
+  font-size: clamp(
+    2.5rem,
+    5vw,
+    4rem
+  ); /* Taille responsive : minimum 2.5rem, maximum 4rem, s'adapte à la largeur de l'écran */
+  font-weight: 800; /* Très gras pour un impact visuel fort */
+  color: var(--color-secondary); /* Couleur du texte via variable CSS */
+  line-height: 1.1; /* Interligne légèrement réduit pour un effet compact */
+  margin-bottom: 1.5rem; /* Espace en dessous du titre pour séparer du sous-titre */
+}
+/* Sous-titre et localisation */
+.hero-subtitle {
+  font-size: 1.2rem; /* Taille légèrement plus grande pour le sous-titre */
+  color: var(
+    --color-text-secondary
+  ); /* Couleur secondaire pour le texte du sous-titre */
+  margin-bottom: 0.75rem;
+}
+/* Localisation de l'événement avec icône */
+.hero-location {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+/* Boutons CTA du hero */
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+/* Image hero */
+.hero-image {
+  flex: 1; /* L'image prend la moitié droite de la section */
+  max-width: 500px;
+}
+/* Image hero responsive */
+.hero-image img {
+  width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-card);
+}
+/* Compte à rebours */
+.countdown {
+  display: flex; /* Flexbox pour aligner les éléments du compte à rebours */
+  align-items: center; /* Centre verticalement les éléments */
+  gap: 0.5rem; /* Espace entre les éléments du compte à rebours */
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne sur petits écrans */
+}
+/* Chaque élément du compte à rebours */
+.countdown-item {
+  display: flex;
+  flex-direction: column; /* Les chiffres et les labels sont empilés verticalement */
+  align-items: center;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1rem;
+  min-width: 75px;
+  box-shadow: var(
+    --shadow-card
+  ); /* Ombre légère pour donner de la profondeur */
+} /* Label sous le chiffre */
+.countdown-number {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+}
+/* Label sous le chiffre */
+.countdown-label {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em; /* Espacement entre les lettres pour un effet typographique */
+  margin-top: 0.25rem; /* Petit espace entre le chiffre et le label */
+}
+/* Séparateur entre les éléments du compte à rebours */
+.countdown-separator {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  align-self: flex-start; /* Aligne le séparateur en haut des éléments du compte à rebours */
+  padding-top: 0.75rem; /* Aligne le séparateur avec les chiffres */
+}
+/*
+SECTION CHIFFRES CLÉS
+CSS GRID USAGe 1*/
+.stats-section {
+  padding: var(--spacing-section) 0; /* Espace vertical autour de la section */
+  background-color: var(--color-secondary);
+}
+/*.stats-grid → CSS Grid pour les 4 statistiques.
+grid-template-columns: repeat(4, 1fr) → 4 colonnes égales.*/
+.stats-grid {
+  display: grid; /* Active le mode grille */
+  grid-template-columns: repeat(
+    4,
+    1fr
+  ); /* 4 colonnes égales */ /*repeat(4, 1fr ) → 4 colonnes égales*/
+  gap: 1.5rem; /* Espace entre les cartes de statistiques */
+  margin-top: 2rem; /* Espace au-dessus de la grille */
+}
+/* Chaque carte de statistique */
+.stat-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Bordure légère pour délimiter la carte */
+  border-radius: var(
+    --border-radius
+  ); /* Coins arrondis pour un effet moderne */
+  padding: var(--spacing-card);
+  text-align: center;
+  transition: all var(--transition); /* Transition douce pour les effets au survol */
+}
+/* Survol de la carte de statistique */
+.stat-card:hover {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-color: var(--color-primary);
+  transform: translateY(
+    -4px
+  ); /* Légère translation vers le haut pour effet de soulèvement */
+}
+/* Icône de la statistique */
+.stat-icon {
+  font-size: 2rem;
+  color: var(--color-primary);
+  display: block; /* Permet de centrer l'icône et d'ajouter un espace en dessous */
+  margin-bottom: 0.75rem;
+}
+/* Titre de la statistique */
+.stat-number {
+  font-family: var(
+    --font-heading
+  ); /* Utilise la police des titres pour un impact visuel fort */
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: inline; /* Affiche le nombre sur une seule ligne */
+}
+.stat-suffix {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+.stat-label {
+  display: block;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+/* Titre de la section stats en blanc */
+.stats-section .section-title {
+  color: #ffffff;
+}
+
+/*SECTION POURQUOI PARTICIPER
+FLEXBOX USAGE 4*/
+/*why-section → section Pourquoi Participer.
+padding vertical via variable CSS pour un espacement cohérent avec les autres sections.*/
+.why-section {
+  padding: var(--spacing-section) 0;
+}
+
+/*.why-flex → Flexbox pour les 3 arguments.*/
+.why-flex {
+  display: flex; /* Active le mode flexbox */
+  gap: 2rem;
+  flex-wrap: wrap; /* Permet aux cartes de passer à la ligne sur petits écrans */
+}
+/* Chaque carte Pourquoi Participer */
+.why-card {
+  flex: 1; /* Chaque carte prend une largeur égale */
+  min-width: 250px;
+  background-color: var(--color-card);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition);
+}
+/* Survol de la carte Pourquoi Participer */
+.why-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-primary);
+}
+/* Icône de la carte Pourquoi Participer */
+.why-icon {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  display: block; /* Permet de centrer l'icône et d'ajouter un espace en dessous */
+  margin-bottom: 1rem;
+}
+/* Titre de la carte Pourquoi Participer */
+.why-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+}
+.why-card p {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+/*SECTION INTERVENANTS VEDETTES
+CSS GRID USAGE 2*/
+
+/*speakers-section → section Intervenants Vedettes.
+padding vertical via variable CSS pour un espacement cohérent avec les autres sections.*/
+.speakers-section {
+  padding: var(--spacing-section) 0;
+  background-color: var(--color-background);
+}
+/*.speakers-grid → CSS Grid pour les 4 intervenants vedettes.
+3 colonnes sur desktop.*/
+.speakers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem; /* Espace entre les cartes intervenants */
+  margin-bottom: 3rem;
+}
+/* Chaque carte intervenant */
+.speaker-card {
+  background-color: var(--color-card);
+  border-radius: var(--border-radius);
+  overflow: hidden; /* Empêche le débordement des images et du contenu */
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition);
+}
+/* Survol de la carte intervenant */
+.speaker-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+/* Photo de l'intervenant */
+.speaker-photo {
+  height: 220px;
+  overflow: hidden; /* Empêche le débordement de l'image */
+}
+/* Image de l'intervenant */
+.speaker-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Assure que l'image couvre toute la zone sans déformation */
+  transition: transform var(--transition);
+  object-position: top; /* Centre l'image sur le haut pour les portraits */
+}
+/* Zoom sur l'image au survol de la carte */
+.speaker-card:hover .speaker-photo img {
+  transform: scale(1.05);
+}
+/* Informations de l'intervenant */
+.speaker-info {
+  padding: 1.25rem;
+}
+/* Nom de l'intervenant */
+.speaker-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem; /* Espace en dessous du nom */
+  color: var(--color-text);
+}
+/* Titre ou rôle de l'intervenant */
+.speaker-title {
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  font-weight: 500;
+  margin-bottom: 0.5rem; /* Espace en dessous du titre */
+}
+/* Pays de l'intervenant avec icône */
+.speaker-country {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  display: flex; /* Flexbox pour aligner l'icône et le texte */
+  align-items: center; /* Aligne l'icône et le texte verticalement */
+  gap: 0.3rem;
+  margin-bottom: 0; /* Supprime l'espace en dessous du pays */
+}
+/*SECTION CTA — CALL TO ACTION*/
+.section-cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/*
+SECTION SPONSORS
+FLEXBOX USAGE 5*/
+
+.sponsors-section {
+  padding: var(--spacing-section) 0;
+  background-color: var(--color-card);
+}
+/* Titre de la section sponsors */
+.sponsors-level {
+  margin-bottom: 2.5rem;
+}
+/* Titre de chaque niveau de sponsor */
+.sponsor-level-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+/* Grille des sponsors */
+.sponsor-or {
+  color: #f59e0b;
+}
+.sponsor-argent {
+  color: #94a3b8;
+}
+.sponsor-bronze {
+  color: #b45309;
+}
+
+/*sponsors-flex → Flexbox pour aligner les sponsors.*/
+
+.sponsors-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+/* Chaque carte sponsor */
+.sponsor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1.25rem 1.5rem;
+  transition: all var(--transition);
+  text-align: center;
+}
+/* Survol de la carte sponsor */
+.sponsor-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+.sponsor-card img {
+  height: 50px;
+  object-fit: contain; /* Assure que le logo est contenu sans déformation */
+}
+/* Tailles différentes selon le niveau */
+.sponsor-card-or {
+  min-width: 180px;
+}
+.sponsor-card-argent {
+  min-width: 150px;
+}
+.sponsor-card-bronze {
+  min-width: 130px;
+}
+
+.sponsor-card-or img {
+  height: 60px;
+}
+.sponsor-card-argent img {
+  height: 50px;
+}
+.sponsor-card-bronze img {
+  height: 40px;
+}
+
+/* Légende du sponsor */
+.sponsor-card span {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+/*
+FOOTER
+FLEXBOX USAGE 6*/
+
+.site-footer {
+  background-color: var(--color-secondary);
+  color: #94a3b8;
+  padding: var(--spacing-section) 0 0;
+  margin-top: var(--spacing-section);
+}
+/*.footer-container → Flexbox pour les 3 colonnes.*/
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+/* Chaque colonne du footer */
+.footer-col {
+  flex: 1; /* Chaque colonne prend une largeur égale */
+  min-width: 200px;
+}
+/* Titre de chaque colonne du footer */
+
+.footer-title {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+/* Description du footer */
+
+.footer-desc {
+  /* Texte descriptif du footer */
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: #94a3b8;
+}
+
+/* Icônes réseaux sociaux */
+.footer-socials {
+  display: flex; /* Flexbox pour aligner les icônes */
+  gap: 0.75rem;
+}
+/* Chaque lien social */
+.footer-socials a {
+  color: #94a3b8;
+  font-size: 1.3rem; /* Taille des icônes */
+  transition: color var(--transition);
+}
+/* Survol des liens sociaux */
+.footer-socials a:hover {
+  color: var(--color-primary);
+}
+/* Liens du footer */
+.footer-links {
+  display: flex;
+  flex-direction: column; /* Empile les liens verticalement */
+  gap: 0.6rem;
+}
+/* Chaque lien du footer */
+.footer-links a {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  transition: color var(--transition);
+}
+/* Survol des liens du footer */
+.footer-links a:hover {
+  color: var(--color-primary);
+}
+/* Informations pratiques */
+.footer-info {
+  display: flex;
+  flex-direction: column; /* Empile les éléments verticalement */
+  gap: 0.75rem;
+}
+/* Chaque élément d'information pratique */
+.footer-info li {
+  display: flex;
+  align-items: flex-start; /* Aligne l'icône et le texte en haut */
+  gap: 0.6rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+/* Icônes des informations pratiques */
+.footer-info i {
+  color: var(--color-primary);
+  margin-top: 0.2rem;
+  flex-shrink: 0; /* Empêche l'icône de rétrécir */
+}
+/* Ligne de copyright */
+
+.footer-bottom {
+  /* Ligne de copyright en bas du footer */
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+/*BOUTON RETOUR EN HAUT*/
+
+/*
+Position fixe en bas à droite.
+display: none → caché par défaut, JS l'affiche après 300px de scroll.
+display: flex → pour centrer l'icône.*/
+#backToTop {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem; /* Positionné en bas à droite de l'écran */
+  display: none; /* Caché par défaut, JS l'affiche après 300px de scroll */
+  display: flex; /* Flexbox pour centrer l'icône */
+  align-items: center;
+  justify-content: center; /* Centre l'icône à l'intérieur du bouton */
+  width: 48px; /* Largeur du bouton */
+  height: 48px; /* Hauteur du bouton */
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem; /* Taille de l'icône */
+  cursor: pointer; /* Curseur pointeur pour indiquer que c'est cliquable */
+  z-index: 999; /* Au-dessus de tout le contenu */
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+  transition: all var(--transition);
+}
+/* Survol du bouton retour en haut : couleur d'accent et léger soulèvement */
+#backToTop:hover {
+  background-color: var(--color-accent);
+  transform: translateY(-3px);
+}
+
+/*ANIMATIONS SCROLL (IntersectionObserver — JS commit suivant)*/
+
+/*.animate-section → état initial (invisible, décalé vers le bas).
+JavaScript ajoutera la classe "visible" au scroll.*/
+
+.animate-section {
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.animate-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* HERO INTERNE — Pages secondaires*/
+/*page-hero → section hero interne.
+background → dégradé sombre pour le contraste.*/
+.page-hero {
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary) 0%,
+    #1e3a5f 100%
+  ); /* Dégradé sombre pour le contraste */
+  padding: 5rem 1.5rem 4rem;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+/* Contenu textuel du hero interne */
+.page-hero-content {
+  max-width: 8000px;
+  margin: 0 auto;
+}
+/* Titre H1 du hero interne */
+.page-hero-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+/* Sous-titre du hero interne */
+.page-hero-subtitle {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0;
+}
+
+/* Fil d'Ariane */
+/*breadcrumb → fil d'Ariane pour la navigation.*/
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+/* Chaque lien du fil d'Ariane */
+.breadcrumb a {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color var(--transition);
+}
+/* Survol des liens du fil d'Ariane */
+.breadcrumb a:hover {
+  color: var(--color-primary);
+}
+/* Séparateur entre les éléments du fil d'Ariane */
+.breadcrumb span[aria-current="page"] /* Élément courant du fil d'Ariane */ {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+/* Séparateur visuel entre les éléments du fil d'Ariane */
+.breadcrumb span[aria-hidden="true"] {
+  /* Séparateur visuel entre les éléments du fil d'Ariane */
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/*PROGRAMME — Onglets et tableaux*/
+.programme-section {
+  padding: var(--spacing-section) 0; /* Espace vertical autour de la section */
+}
+/* Conteneur des onglets — FLEXBOX USAGE 7 */
+.tabs-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-border);
+  border-radius: 50px;
+  background-color: var(--color-card);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.tab-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+/* Onglet actif */
+.tab-btn.active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+/* Titre du planning */
+.planning-title {
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.planning-title i {
+  color: var(--color-primary);
+}
+/* Tableau responsive */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-card);
+}
+.planning-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.planning-table th {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  padding: 1rem 1.25rem;
+  text-align: left; /*alligner  à gauche*/
+  font-weight: 600;
+  white-space: nowrap; /*Empêche le texte de passer à la ligne*/
+}
+
+.planning-table th i {
+  margin-right: 0.4rem; /* Petit espace entre l'icône et le texte du titre */
+  color: var(--color-primary);
+}
+
+/* Style des cellules de données (Contenu des lignes) */
+.planning-table td {
+  padding: 1rem 1.25rem; /* Espacement interne identique aux en-têtes */
+  border-bottom: 1px solid var(--color-border); /* Fine ligne de séparation sous chaque cellule */
+  color: var(--color-text); /* Couleur du texte principal */
+}
+
+/* Alternance de couleurs */
+.planning-table tr:nth-child(even) {
+  background-color: rgba(16, 185, 129, 0.03);
+}
+.planning-table tr:hover {
+  background-color: rgba(16, 185, 129, 0.06);
+}
+/* Lignes spéciales (pauses, cérémonies) */
+.row-special td {
+  background-color: rgba(16, 185, 129, 0.08);
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+/* Section thématiques — CSS GRID USAGE 3 */
+.themes-section {
+  padding: var(--spacing-section) 0; /* Espacement vertical de la section */
+  background-color: var(--color-card); /* Couleur de fond de la section */
+}
+
+/* Grille pour l'alignement des cartes thématiques */
+.themes-grid {
+  display: grid; /* Active la disposition en grille */
+  grid-template-columns: repeat(2, 1fr); /* Crée 2 colonnes de largeur égale */
+  gap: 1.5rem; /* Espace entre les cartes */
+  margin-top: 2rem; /* Espace au-dessus de la grille */
+}
+
+/* Style individuel des cartes thématiques */
+.theme-card {
+  background-color: var(--color-background); /* Couleur de fond de la carte */
+  border: 1px solid var(--color-border); /* Bordure de la carte */
+  border-radius: var(--border-radius); /* Coins arrondis */
+  padding: var(--spacing-card); /* Espacement interne de la carte */
+  transition: all var(--transition); /* Transition fluide des propriétés lors des interactions */
+}
+
+/* Effet au survol des cartes thématiques */
+.theme-card:hover {
+  border-color: var(
+    --color-primary
+  ); /* Modification de la couleur de bordure au survol */
+  box-shadow: var(--shadow-hover); /* Ombre portée au survol */
+  transform: translateY(-4px); /* Déplacement vers le haut au survol */
+}
+
+/* Style des icônes dans les cartes thématiques */
+.theme-icon {
+  font-size: 2.5rem; /* Taille de l'icône */
+  color: var(--color-primary); /* Couleur de l'icône */
+  display: block; /* Passage de l'icône en élément bloc */
+  margin-bottom: 1rem; /* Espace sous l'icône */
+}
+
+/* Style des titres dans les cartes thématiques */
+.theme-card h3 {
+  font-size: 1.2rem; /* Taille du titre */
+  margin-bottom: 0.75rem; /* Espace sous le titre */
+  color: var(--color-text); /* Couleur du texte du titre */
+}
+
+/* Style des paragraphes dans les cartes thématiques */
+.theme-card p {
+  font-size: 0.95rem; /* Taille du texte descriptif */
+  color: var(--color-text-secondary); /* Couleur secondaire du texte */
+  margin-bottom: 0; /* Suppression de la marge inférieure */
+}
+
+/* INTERVENANTS — Filtres et grille */
+
+/* Section englobante pour les intervenants */
+.intervenants-section {
+  padding: var(--spacing-section) 0; /* Espacement vertical basé sur la variable globale */
+}
+
+/* Boutons de filtre — FLEXBOX USAGE 8 */
+/* Conteneur des boutons de filtrage des intervenants */
+.filtres-container {
+  display: flex; /* Active la disposition en Flexbox */
+  gap: 0.75rem; /* Espacement entre chaque bouton de filtre */
+  flex-wrap: wrap; /* Permet aux boutons de passer à la ligne sur petit écran */
+  margin-bottom: 1.5rem; /* Espace en dessous du groupe de filtres */
+  margin-top: -1.5rem; /* Marge négative pour remonter le bloc vers le haut */
+}
+
+/* Style de base des boutons de filtre */
+.filtre-btn {
+  display: flex; /* Active Flexbox pour aligner l'icône et le texte du bouton */
+  align-items: center; /* Aligne l'icône et le texte verticalement au centre */
+  gap: 0.4rem; /* Espace entre l'icône et le texte */
+  padding: 0.6rem 1.25rem; /* Espacement interne (haut/bas gauche/droite) */
+  border: 2px solid var(--color-border); /* Epaisseur et couleur de bordure */
+  border-radius: 50px; /* Coins complètement arrondis (forme de pilule) */
+  background-color: var(--color-card); /* Couleur de fond du bouton */
+  color: var(--color-text); /* Couleur du texte du bouton */
+  font-family: var(--font-body); /* Police de caractere appliquée au bouton */
+  font-size: 0.9rem; /* Taille du texte */
+  font-weight: 600; /* Texte en demi-gras */
+  cursor: pointer; /* Modifie le pointeur de la souris en main au survol */
+  transition: all var(--transition); /* Transition fluide des modifications visuelles */
+}
+
+/* Effet au survol du bouton de filtre */
+.filtre-btn:hover {
+  border-color: var(
+    --color-primary
+  ); /* La bordure prend la couleur principale */
+  color: var(
+    --color-primary
+  ); /* Le texte et l'icône prennent la couleur principale */
+}
+
+/* Style du bouton de filtre actif (sélectionné) */
+.filtre-btn.active {
+  background-color: var(
+    --color-primary
+  ); /* Le fond passe à la couleur principale */
+  border-color: var(
+    --color-primary
+  ); /* La bordure passe à la couleur principale */
+  color: #ffffff; /* Le texte et l'icône passent en blanc pour le contraste */
+}
+/* Grille intervenants — CSS GRID USAGE 4 */
+/* Grille intervenants — CSS GRID USAGE 4 */
+/* Configuration de la grille CSS Grid pour l'affichage des cartes d'intervenants */
+.intervenants-grid {
+  display: grid; /* Active le mode de disposition en grille */
+  grid-template-columns: repeat(3, 1fr); /* Crée 3 colonnes de largeur égale */
+  gap: 1.5rem; /* Espacement entre les cartes d'intervenants */
+}
+
+/* Style de la carte individuelle d'intervenant */
+.intervenant-card {
+  background-color: var(--color-card); /* Couleur de fond de la carte */
+  border-radius: var(--border-radius); /* Coins arrondis de la carte */
+  overflow: hidden; /* Empêche le contenu et l'image de dépasser de la carte */
+  box-shadow: var(--shadow-card); /* Ombre portée sous la carte */
+  border: 1px solid var(--color-border); /* Bordure fine autour de la carte */
+  transition: all var(--transition); /* Transition fluide des modifications au survol */
+}
+
+/* Effet au survol de la carte intervenant */
+.intervenant-card:hover {
+  transform: translateY(
+    -6px
+  ); /* Déplace la carte de 6px vers le haut au survol */
+  box-shadow: var(--shadow-hover); /* Accentue l'ombre portée au survol */
+}
+
+/* Conteneur de la photo de l'intervenant */
+.intervenant-photo {
+  position: relative; /* Sert de repère pour le positionnement absolu du badge */
+  height: 650px; /* Hauteur fixe du bloc photo */
+  overflow: hidden; /* Masque le débordement lors de l'effet de zoom */
+}
+
+/* Style de l'image de l'intervenant */
+.intervenant-photo img {
+  width: 100%; /* L'image occupe toute la largeur disponible */
+  height: 100%; /* L'image occupe toute la hauteur du conteneur */
+  object-fit: cover; /* Ajuste l'image pour couvrir la zone sans la déformer */
+  transition: transform var(--transition); /* Transition fluide pour le zoom */
+  object-position: center; /* Centré horizontalement et ajusté vers le haut */
+}
+
+/* Effet de zoom sur l'image lors du survol de la carte */
+.intervenant-card:hover .intervenant-photo img {
+  transform: scale(1.05); /* Agrandit légèrement l'image de 5% au survol */
+}
+
+/* Badge de catégorie affiché par-dessus la photo */
+.intervenant-badge {
+  position: absolute; /* Positionne le badge par rapport à .intervenant-photo */
+  top: 1rem; /* Distance par rapport au haut de la photo */
+  right: 1rem; /* Distance par rapport à la droite de la photo */
+  padding: 0.3rem 0.75rem; /* Espacement interne du badge */
+  border-radius: 50px; /* Bords complètement arrondis (forme de pilule) */
+  font-size: 0.75rem; /* Taille du texte du badge */
+  font-weight: 700; /* Texte en gras */
+  color: #ffffff; /* Couleur du texte en blanc */
+}
+
+/* Variantes de couleurs de fond selon le domaine d'expertise */
+.intervenant-badge.ia-tech {
+  background-color: #6366f1; /* Couleur violet/bleu pour IA & Tech */
+}
+.intervenant-badge.business {
+  background-color: #f59e0b; /* Couleur orange/ambre pour Business */
+}
+.intervenant-badge.design {
+  background-color: #ec4899; /* Couleur rose pour Design */
+}
+.intervenant-badge.data {
+  background-color: #14b8a6; /* Couleur turquoise pour Data */
+}
+
+/* Conteneur des informations textuelles sous la photo */
+.intervenant-info {
+  padding: 0.75rem 1.25rem; /* Espacement interne de la zone de texte */
+}
+
+/* Style du nom de l'intervenant */
+.intervenant-nom {
+  font-size: 1.1rem; /* Taille de police du nom */
+  font-weight: 700; /* Nom affiché en gras */
+  color: var(--color-text); /* Couleur principale du texte */
+  margin-bottom: 0.15rem; /* Marge inférieure */
+}
+
+/* Style du titre professionnel ou rôle de l'intervenant */
+.intervenant-titre {
+  font-size: 0.875rem; /* Taille de police du titre */
+  color: var(--color-primary); /* Couleur principale d'accentuation */
+  font-weight: 500; /* Texte en demi-gras */
+  margin-bottom: 0.25rem; /* Marge inférieure */
+}
+
+/* Style de l'affichage du pays d'origine */
+.intervenant-pays {
+  font-size: 0.8rem; /* Taille de police du texte pays */
+  color: var(--color-text-secondary); /* Couleur secondaire du texte */
+  display: flex; /* Disposition en flexbox pour aligner l'icône et le texte */
+  align-items: center; /* Alignement vertical centré de l'icône et du texte */
+  gap: 0.3rem; /* Espacement entre l'icône et le nom du pays */
+  margin-bottom: 0.4rem; /* Marge inférieure */
+}
+
+/* Style de l'icône représentant le pays */
+.intervenant-pays i {
+  color: var(--color-primary); /* Couleur d'accentuation de l'icône */
+}
+
+/* Style de la biographie/description de l'intervenant */
+.intervenant-bio {
+  font-size: 0.875rem; /* Taille du texte de la bio */
+  color: var(--color-text-secondary); /* Couleur secondaire du texte */
+  line-height: 1.5; /* Hauteur de ligne pour une meilleure lisibilité */
+  margin-bottom: 0; /* Suppression de la marge inférieure */
+}
+
+/* CONTACT — Formulaire et informations */
+
+/* Section globale de contact */
+.contact-section {
+  padding: var(--spacing-section) 0; /* Espacement vertical selon la variable globale */
+}
+
+/* Layout formulaire + infos — FLEXBOX USAGE 9 */
+/* Disposition côte à côte du formulaire et des informations de contact */
+.contact-layout {
+  display: flex; /* Active la disposition en Flexbox */
+  gap: 3rem; /* Grand espace de séparation entre le formulaire et la colonne d'infos */
+  align-items: flex-start; /* Aligne le formulaire et les infos en haut */
+}
+
+/* Conteneur principal du formulaire */
+.form-wrapper {
+  flex: 1.5; /* Donne 1.5 fois plus de largeur au formulaire par rapport au bloc d'infos */
+  background-color: var(
+    --color-card
+  ); /* Couleur de fond de la carte formulaire */
+  border-radius: var(--border-radius); /* Coins arrondis du bloc */
+  padding: 2.5rem; /* Espacement interne généreux dans le formulaire */
+  box-shadow: var(--shadow-card); /* Ombre portée sous le formulaire */
+  border: 1px solid var(--color-border); /* Fine bordure d'encadrement */
+}
+
+/* Style du titre du formulaire */
+.form-title {
+  font-size: 1.5rem; /* Taille du titre */
+  font-weight: 700; /* Texte affiché en gras */
+  color: var(--color-text); /* Couleur du texte */
+  margin-bottom: 2rem; /* Espacement sous le titre */
+  display: flex; /* Disposition en flexbox pour aligner l'icône et le texte */
+  align-items: center; /* Aligne verticalement l'icône avec le texte */
+  gap: 0.5rem; /* Espace entre l'icône et le texte du titre */
+}
+
+/* Style de l'icône présente dans le titre */
+.form-title i {
+  color: var(--color-primary); /* Couleur principale appliquée à l'icône */
+}
+
+/* Groupes de champs (conteneur label + input) */
+.form-group {
+  margin-bottom: 1.5rem; /* Espace vertical entre chaque champ du formulaire */
+}
+
+/* Style des étiquettes (labels) au-dessus des champs */
+.form-label {
+  display: block; /* S'assure que l'étiquette prend sa propre ligne */
+  font-weight: 600; /* Texte en demi-gras */
+  color: var(--color-text); /* Couleur du texte */
+  margin-bottom: 0.4rem; /* Petit espace sous l'étiquette */
+  font-size: 0.95rem; /* Taille de police du texte */
+}
+
+/* Style de l'astérisque pour les champs obligatoires */
+.required {
+  color: #ef4444; /* Couleur rouge pour indiquer l'obligation */
+}
+
+/* Champs de saisie (input, select, textarea) */
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%; /* Les champs occupent toute la largeur disponible */
+  padding: 0.75rem 1rem; /* Espacement interne pour le confort de saisie */
+  border: 2px solid var(--color-border); /* Bordure initiale des champs */
+  border-radius: 8px; /* Coins légèrement arrondis */
+  font-family: var(--font-body); /* Application de la police globale */
+  font-size: 0.95rem; /* Taille du texte saisi */
+  color: var(--color-text); /* Couleur du texte saisi */
+  background-color: var(--color-background); /* Couleur de fond des champs */
+  transition: all var(--transition); /* Transition fluide au survol/focus */
+  appearance: none; /* Supprime le style par défaut des navigateurs */
+}
+
+/* Style lors du clic ou du focus dans un champ */
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none; /* Supprime le contour bleu par défaut du navigateur */
+  border-color: var(
+    --color-primary
+  ); /* La bordure prend la couleur principale */
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); /* Légère aura verte autour du champ */
+}
+
+/* État valide — Classe ajoutée dynamiquement */
+.form-input.valid,
+.form-select.valid,
+.form-textarea.valid {
+  border-color: #10b981; /* Bordure verte si la saisie est correcte */
+}
+
+/* État invalide — Classe ajoutée dynamiquement */
+.form-input.invalid,
+.form-select.invalid,
+.form-textarea.invalid {
+  border-color: #ef4444; /* Bordure rouge si la saisie est incorrecte */
+}
+
+/* Style spécifique pour la zone de texte multi-lignes */
+.form-textarea {
+  resize: vertical; /* Permet le redimensionnement uniquement de haut en bas */
+  min-height: 130px; /* Hauteur minimale de la zone de texte */
+}
+/*SECTION : MESSAGES D'ERREUR ET DE SUCCÈS (FORMULAIRE)*/
+
+/* Messages d'erreur sous les champs */
+.form-error {
+  display: block; /* S'assure que le message s'affiche sur sa propre ligne */
+  color: #ef4444; /* Rouge vif pour attirer l'attention sur l'erreur */
+  font-size: 0.85rem; /* Taille de police légèrement réduite */
+  margin-top: 0.3rem; /* Espace au-dessus du message d'erreur */
+  min-height: 1.2em; /* Réserve une hauteur minimale pour éviter les saut de layout */
+}
+/* Message de succès global (après envoi du formulaire) */
+.form-success {
+  display: flex; /* Disposition Flexbox pour aligner l'icône et le texte */
+  align-items: flex-start; /* Aligne l'icône et le texte en haut du bloc */
+  gap: 0.75rem; /* Espace entre l'icône et le message */
+  background-color: #dcfce7; /* Fond vert clair apaisant */
+  border: 1px solid #86efac; /* Bordure vert clair */
+  border-radius: var(
+    --border-radius
+  ); /* Coins arrondis selon la variable globale */
+  padding: 1.25rem; /* Espacement interne du bloc */
+  margin-top: 1.5rem; /* Espacement au-dessus du message de succès */
+  color: #166534; /* Texte en vert foncé pour garantir la lisibilité */
+}
+/* Icône de confirmation dans le message de succès */
+.form-success i {
+  font-size: 1.5rem; /* Taille d'icône bien visible */
+  color: #16a34a; /* Couleur verte vive pour l'icône */
+  flex-shrink: 0; /* Empêche l'icône de se déformer ou réduire si le texte est long */
+}
+/* Icône de confirmation dans le message de succès */
+.form-success i {
+  font-size: 1.5rem; /* Taille d'icône bien visible */
+  color: #16a34a; /* Couleur verte vive pour l'icône */
+  flex-shrink: 0; /* Empêche l'icône de se déformer ou réduire si le texte est long */
+}
+
+/*SECTION : INFORMATIONS DE CONTACT (COLONNE DE DROITE)*/
+
+/* Informations de contact (Conteneur principal de la colonne) */
+.contact-info {
+  flex: 1; /* Prend 1 part de l'espace disponible (plus étroit que le formulaire à 1.5) */
+  background-color: var(--color-card); /* Couleur de fond du bloc */
+  border-radius: var(--border-radius); /* Coins arrondis */
+  padding: 2.5rem; /* Espacement interne identique au formulaire */
+  box-shadow: var(--shadow-card); /* Ombre portée sous le bloc */
+  border: 1px solid var(--color-border); /* Fine bordure d'encadrement */
+}
+/* Titre de la section informations de contact */
+.contact-info-title {
+  font-size: 1.5rem; /* Taille du titre */
+  font-weight: 700; /* Texte en gras */
+  color: var(--color-text); /* Couleur principale du texte */
+  margin-bottom: 2rem; /* Espacement sous le titre */
+  display: flex; /* Flexbox pour aligner l'icône et le titre */
+  align-items: center; /* Alignement vertical centré */
+  gap: 0.5rem; /* Espace entre l'icône et le titre */
+}
+/* Icône dans le titre des informations de contact */
+.contact-info-title i {
+  color: var(--color-primary); /* Couleur d'accentuation principale */
+}
+/* Liste des coordonnées (adresse, téléphone, email, etc.) */
+.contact-info-list {
+  display: flex; /* Disposition verticale en colonne */
+  flex-direction: column;
+  gap: 1.5rem; /* Espacement entre chaque élément de la liste */
+  margin-bottom: 2rem; /* Espace en dessous de la liste complète */
+}
+/* Éléments individuel de la liste */
+.contact-info-list li {
+  display: flex; /* Flexbox pour aligner l'icône avec le texte explicatif */
+  align-items: flex-start; /* Aligne le haut de l'icône avec le titre */
+  gap: 1rem; /* Espace horizontal entre l'icône et le texte */
+}
+/* Icônes de chaque coordonnée */
+.contact-info-list i {
+  font-size: 1.3rem; /* Taille de l'icône de coordonnée */
+  color: var(--color-primary); /* Couleur principale d'accentuation */
+  flex-shrink: 0; /* Empêche l'icône de se compresser */
+  margin-top: 0.1rem; /* Léger décalage vers le bas pour l'aligner à la première ligne */
+}
+/* Titre de chaque coordonnée (ex: "Adresse", "Email") */
+.contact-info-list strong {
+  display: block; /* S'assure que le texte du titre passe sur sa propre ligne */
+  font-weight: 600; /* Texte en demi-gras */
+  color: var(--color-text); /* Couleur du texte principal */
+  margin-bottom: 0.2rem; /* Petit espace sous le titre de la coordonnée */
+}
+/* Texte détaillé de chaque coordonnée */
+.contact-info-list span {
+  color: var(
+    --color-text-secondary
+  ); /* Couleur de texte secondaire (plus discret) */
+  font-size: 0.9rem; /* Taille de police du texte */
+  line-height: 1.5; /* Hauteur de ligne pour une bonne lisibilité */
+}
+/*SECTION : CARTE GOOGLE MAPS*/
+
+/* Conteneur de la carte de géolocalisation */
+.map-wrapper {
+  border-radius: var(
+    --border-radius
+  ); /* Coins arrondis pour correspondre au design */
+  overflow: hidden; /* Empêche les bords de l'iframe de la carte d'outrepasser l'arrondi */
+  border: 1px solid var(--color-border); /* Fine bordure d'encadrement autour de la carte */
+}
+/* L'iframe Google Maps à l'intérieur */
+.map-wrapper iframe {
+  width: 100%; /* S'assure que la carte occupe toute la largeur du conteneur */
+  display: block;
+}
+
+/*FAQ — ACCORDÉON CSS PUR avec <details> et <summary>*/
+
+/* Section globale englobant toute la FAQ */
+.faq-section {
+  padding: var(--spacing-section) 0; /* Espacement vertical (haut/bas) basé sur la variable globale */
+  background-color: var(
+    --color-card
+  ); /* Applique la couleur de fond du bloc section */
+}
+/* Conteneur principal qui limite la largeur et centre la FAQ */
+.faq-container {
+  max-width: 800px; /* Fixe une largeur maximale pour éviter que les lignes de texte ne soient trop longues */
+  margin: 0 auto; /* Centre le conteneur horizontalement dans la page */
+  display: flex; /* Active la disposition Flexbox */
+  flex-direction: column; /* Aligne les éléments verticalement (les uns sous les autres) */
+  gap: 1rem; /* Espace vertical de 1rem entre chaque question/bloc FAQ */
+}
+/*
+   <details> → élément HTML natif pour l'accordéon.
+   Fonctionne SANS JavaScript.
+   L'attribut [open] est géré automatiquement par le navigateur.
+*/
+.faq-item {
+  background-color: var(
+    --color-background
+  ); /* Couleur de fond de la carte FAQ */
+  border: 1px solid var(--color-border); /* Applique une fine bordure d'encadrement */
+  border-radius: var(
+    --border-radius
+  ); /* Coins arrondis personnalisés selon la variable CSS */
+  overflow: hidden; /* Empêche le contenu interne de dépasser des coins arrondis */
+  transition: border-color var(--transition); /* Transition fluide lors du changement de couleur de la bordure */
+}
+/* Style spécifique de la carte FAQ lorsque l'accordéon est déplié/ouvert */
+.faq-item[open] {
+  border-color: var(
+    --color-primary
+  ); /* La bordure prend la couleur principale du site */
+}
+/*
+   <summary> → titre cliquable de la question.
+   list-style: none → supprime le triangle par défaut du navigateur.
+   cursor: pointer → indique que c'est cliquable.
+*/
+.faq-question {
+  list-style: none; /* Masque la flèche ou puce par défaut affichée par les navigateurs */
+  padding: 1.25rem 1.5rem; /* Marge interne pour espacer le texte des bords du bloc */
+  cursor: pointer; /* Modifie le curseur en forme de main au survol */
+  display: flex; /* Active Flexbox pour aligner l'icône, le texte et la flèche sur une ligne */
+  align-items: center; /* Aligne verticalement au centre les éléments de l'entête */
+  gap: 0.75rem; /* Espace de séparation entre la première icône et le texte */
+  font-weight: 600; /* Met le texte de la question en demi-gras */
+  color: var(--color-text); /* Couleur du texte principal */
+  font-size: 1rem; /* Taille de la police de la question */
+  transition: color var(--transition); /* Animation fluide de la couleur du texte au survol/clic */
+  background-color: var(
+    --color-card
+  ); /* Couleur de fond du bandeau de la question */
+  user-select: none; /* Empêche la sélection bleue du texte au double-clic */
+}
+/* Supprime la flèche/marqueur par défaut spécifique aux moteurs WebKit (Chrome, Safari, Edge) */
+.faq-question::-webkit-details-marker {
+  display: none; /* Masque l'élément natif */
+}
+/* Modification au passage de la souris sur la question */
+.faq-question:hover {
+  color: var(
+    --color-primary
+  ); /* Le texte passe à la couleur d'accentuation principale */
+}
+/* Style de l'entête de la question quand la carte est ouverte */
+.faq-item[open] .faq-question {
+  color: var(--color-primary); /* Garde la couleur principale sur le texte */
+  border-bottom: 1px solid var(--color-border); /* Ajoute un trait de séparation sous la question */
+}
+/* Première icône d'illustration placée au début de la question */
+.faq-question i:first-child {
+  color: var(
+    --color-primary
+  ); /* Applique la couleur d'accentuation principale à l'icône */
+  flex-shrink: 0; /* Empêche l'icône de rétrécir si le texte de la question est très long */
+}
+/* Icône chevron (flèche) située à l'extrême droite */
+.faq-chevron {
+  margin-left: auto; /* Marge automatique à gauche qui repousse la flèche tout à droite */
+  transition: transform var(--transition); /* Permet une animation fluide lors de la rotation */
+  color: var(
+    --color-text-secondary
+  ); /* Couleur plus discrète pour la flèche inactive */
+}
+/* Animation de la flèche lorsque la réponse est affichée */
+.faq-item[open] .faq-chevron {
+  transform: rotate(
+    180deg
+  ); /* Fait pivoter la flèche à 180 degrés vers le haut */
+  color: var(--color-primary); /* Passe la flèche en couleur principale */
+}
+/* Zone contenant la réponse textuelle */
+.faq-reponse {
+  padding: 1.25rem 1.5rem; /* Espacement interne de la zone de réponse */
+  color: var(
+    --color-text-secondary
+  ); /* Couleur de texte secondaire (plus doux pour la lecture) */
+  font-size: 0.95rem; /* Taille de police légèrement plus petite que la question */
+  line-height: 1.7; /* Hauteur de ligne pour espacer le texte et faciliter la lecture */
+  animation: slideDown 0.3s ease; /* Exécute l'animation d'apparition vers le bas pendant 0.3s */
+}
+/* Paragraphes contenus à l'intérieur de la réponse */
+.faq-reponse p {
+  margin-bottom: 0; /* Supprime la marge basse par défaut du paragraphe HTML */
+  color: var(
+    --color-text-secondary
+  ); /* Garantit l'application de la couleur secondaire */
+}
+/*
+   Animation CSS d'ouverture de la réponse.
+   slideDown → fait descendre et apparaître la réponse en fondu.
+*/
+@keyframes slideDown {
+  from {
+    opacity: 0; /* Départ de l'animation : totalement invisible */
+    transform: translateY(-10px); /* Décalé de 10 pixels vers le haut */
+  }
+  to {
+    opacity: 1; /* Fin de l'animation : complètement opaque/visible */
+    transform: translateY(0); /* Retour à sa position originale */
+  }
+}
