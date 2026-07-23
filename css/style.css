@@ -1799,3 +1799,282 @@ background → dégradé sombre pour le contraste.*/
     transform: translateY(0); /* Retour à sa position originale */
   }
 }
+/* RESPONSIVE DESIGN — MEDIA QUERIES
+   3 breakpoints : mobile (375px), tablette (768px), desktop (1200px+) */
+
+/* TABLETTE — max-width: 991px */
+
+/* S'applique à tous les écrans dont la largeur ne dépasse pas 991 pixels (tablettes et mobiles) */
+
+@media (max-width: 991px) {
+  /* Navbar */
+  /* Masque les liens de navigation principaux par défaut sur tablette et mobile */
+  .nav-links {
+    display: none; /* Cache le menu de navigation */
+    position: absolute; /* Positionne le menu sous la barre de navigation */
+    top: 100%; /* Place le haut du menu juste en dessous de la navbar */
+    left: 0; /* Colle le menu au bord gauche de l'écran */
+    right: 0; /* Colle le menu au bord droit de l'écran (prend toute la largeur) */
+    background-color: var(
+      --color-card
+    ); /* Applique la couleur de fond du menu */
+    flex-direction: column; /* Aligne les liens du menu verticalement en colonne */
+    padding: 1rem 1.5rem; /* Ajoute un espace interne haut/bas et gauche/droite */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Applique une ombre sous le menu déroulant */
+    border-top: 1px solid var(--color-border); /* Ajoute un trait de séparation en haut du menu */
+    gap: 0.25rem; /* Espace vertical entre chaque lien du menu */
+  }
+  /* Affiche le menu déroulant lorsque la classe 'menu-ouvert' est ajoutée */
+  .nav-links.menu-ouvert {
+    display: flex; /* Active l'affichage en flexbox pour rendre le menu visible */
+  }
+  /* Affiche le bouton menu hamburger */
+  .btn-hamburger {
+    display: flex; /* Rend le bouton hamburger visible */
+    align-items: center; /* Aligne l'icône verticalement au centre du bouton */
+    justify-content: center; /* Aligne l'icône horizontalement au centre du bouton */
+  }
+  /* Hero */
+  /* Reconfigure la section principale (Hero) pour un affichage vertical */
+  .hero-section {
+    flex-direction: column; /* Bascule le contenu (texte et image) l'un sous l'autre */
+    text-align: center; /* Centre tout le texte de la section Hero */
+    padding: 3rem 1.5rem; /* Réduit le padding interne pour s'adapter aux petits écrans */
+    min-height: auto; /* Supprime la hauteur minimale forcée pour s'adapter au contenu */
+  }
+  /* Centre horizontalement les boutons de la section Hero */
+  .hero-buttons {
+    justify-content: center; /* Centre les boutons d'action */
+  }
+  /* Centre horizontalement les informations de localisation du Hero */
+  .hero-location {
+    justify-content: center; /* Centre l'icône et le texte de lieu */
+  }
+  /* Centre le compte à rebours */
+  .countdown {
+    justify-content: center; /* Centre les blocs de chiffres du compte à rebours */
+  }
+  /* Centre le compte à rebours */
+  .countdown {
+    justify-content: center; /* Centre les blocs de chiffres du compte à rebours */
+  }
+  /* Stats : 2 colonnes */
+  /* Passe la grille des statistiques sur 2 colonnes égales */
+  .stats-grid {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Répartit les cartes de statistiques sur 2 colonnes */
+  }
+  /* Intervenants vedettes : 2 colonnes */
+  /* Passe la grille des intervenants vedettes sur 2 colonnes égales */
+  .speakers-grid {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Divise la grille en 2 colonnes de même largeur */
+  }
+  /* Intervenants : 2 colonnes */
+  /* Passe la grille générale des intervenants sur 2 colonnes égales */
+  .intervenants-grid {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Divise la grille en 2 colonnes de même largeur */
+  }
+  /* Thématiques : 2 colonnes → reste pareil */
+
+  /* Contact : colonne unique */
+  /* Passe la disposition de la section contact sur une seule colonne verticale */
+  .contact-layout {
+    flex-direction: column; /* Empile le formulaire et le bloc d'informations l'un sous l'autre */
+  }
+  /* Footer */
+  /* Ajuste l'espacement dans le pied de page */
+  .footer-container {
+    gap: 2rem; /* Définit un espace de 2rem entre les blocs du pied de page */
+  }
+}
+
+/* MOBILE — max-width: 767px */
+
+/* S'applique à tous les écrans dont la largeur ne dépasse pas 767 pixels (smartphones) */
+@media (max-width: 767px) {
+  /* Décale le haut du corps de page pour compenser la hauteur de la navbar fixe */
+  body {
+    padding-top: 65px; /* Évite que la barre de navigation ne masque le début du contenu */
+  }
+  /* Sections */
+  /* Harmonise le rembourrage vertical de toutes les sections sur mobile */
+  .hero-section,
+  .stats-section,
+  .why-section,
+  .speakers-section,
+  .sponsors-section,
+  .programme-section,
+  .themes-section,
+  .intervenants-section,
+  .contact-section,
+  .faq-section {
+    padding-top: 50px; /* Espace interne en haut réduit à 50px */
+    padding-bottom: 50px; /* Espace interne en bas réduit à 50px */
+  }
+  /* Titres */
+  /* Adapte la taille du titre principal de section aux écrans de mobile */
+  .section-title {
+    font-size: 1.75rem; /* Réduit la taille du titre de section */
+  }
+  /* Adapte la taille du sous-titre de section */
+  .section-subtitle {
+    font-size: 1rem; /* Réduit la taille du texte de sous-titre */
+  }
+  /* Bannière en haut de page (Hero secondaire) */
+  .page-hero {
+    padding: 3rem 1rem 2.5rem; /* Ajuste l'espacement interne (haut, côtés, bas) */
+    margin-bottom: 2.5rem; /* Marge sous la bannière pour espacer le contenu suivant */
+  }
+  /* Stats : 1 colonne */
+  /* Maintient la grille des statistiques sur 2 colonnes sur mobile */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr; /* 2 colonnes de largeur égale */
+  }
+  /* Intervenants vedettes : 1 colonne */
+  /* Passe la grille des intervenants vedettes sur une seule colonne */
+  .speakers-grid {
+    grid-template-columns: 1fr; /* Une seule colonne prenant toute la largeur */
+  }
+  /* Arguments : 1 colonne */
+  /* Aligne les arguments de la section "Pourquoi participer" verticalement */
+  .why-flex {
+    flex-direction: column; /* Empile les cartes ou blocs les uns sous les autres */
+  }
+  /* Intervenants : 1 colonne */
+  /* Passe la grille principale des intervenants sur une seule colonne */
+  .intervenants-grid {
+    grid-template-columns: 1fr; /* Une seule colonne par ligne */
+  }
+  /* Thématiques : 1 colonne */
+  /* Passe la grille des thématiques du programme sur une seule colonne */
+  .themes-grid {
+    grid-template-columns: 1fr; /* Une seule colonne par ligne */
+  }
+  /* Footer : 1 colonne */
+  /* Empile verticalement les blocs d'information du pied de page */
+  .footer-container {
+    flex-direction: column; /* Disposition en colonne */
+    gap: 2rem; /* Espacement vertical entre les blocs */
+  }
+  /* Compte à rebours */
+  /* Réduit la largeur minimale des blocs du compte à rebours pour les petits écrans */
+  .countdown-item {
+    min-width: 60px; /* Largeur minimale de chaque case de temps */
+    padding: 0.5rem 0.75rem; /* Rembourrage interne plus compact */
+  }
+  /* Réduit la taille des chiffres du compte à rebours */
+  .countdown-number {
+    font-size: 1.5rem; /* Taille de police réduite pour les chiffres */
+  }
+  /* Onglets programme */
+  /* Aligne verticalement les boutons d'onglets du programme */
+  .tabs-container {
+    flex-direction: column; /* Empile les boutons d'onglets les uns sous les autres */
+    gap: 0.5rem; /* Espace vertical entre chaque onglet */
+  }
+  /* Bouton retour en haut */
+  /* Redimensionne et repositionne le bouton "Retour en haut" au coin de l'écran */
+  #backToTop {
+    bottom: 1rem; /* Espace à 1rem du bas de la fenêtre */
+    right: 1rem; /* Espace à 1rem du bord droit */
+    width: 42px; /* Largeur réduite du bouton */
+    height: 42px; /* Hauteur réduite du bouton */
+  }
+  /* Grille obligatoire sur 1 colonne pour mobile (exigé par le sujet) */
+  .intervenants-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Limite la hauteur maximale des photos d'intervenants */
+  .intervenant-card img,
+  .speaker-card img {
+    width: 100%; /* largeur fixe*/
+    height: 100%; /* Hauteur fixe pour éviter que la photo ne prenne tout l'écran */
+    object-fit: cover; /* Recadre proprement sans déformer */
+    object-position: center top; /* Calfeutre sur les visages */
+  }
+}
+
+/* TRÈS PETIT MOBILE — max-width: 575px */
+
+/* S'applique uniquement aux très petits écrans (smartphones en mode portrait étroit) */
+@media (max-width: 575px) {
+  /* Réduit la taille du titre principal dans la section Hero */
+  .hero-title {
+    font-size: 2rem; /* Diminue la taille de police pour éviter que le titre ne prenne trop de place */
+  }
+
+  /* Organise les boutons de la section Hero verticalement */
+  .hero-buttons {
+    flex-direction: column; /* Empile les boutons les uns sous les autres */
+    align-items: center; /* Centre horizontalement les boutons dans le conteneur */
+  }
+
+  /* Redimensionne les boutons individuels dans la section Hero */
+  .hero-buttons .btn {
+    width: 100%; /* Permet au bouton d'occuper toute la largeur disponible */
+    max-width: 300px; /* Limite la largeur maximale du bouton à 300px pour garder une belle proportion */
+    justify-content: center; /* Centre le texte et l'icône à l'intérieur du bouton */
+  }
+
+  /* Conserve la grille de statistiques sur 2 colonnes avec un espace réduit */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr; /* Maintient l'affichage des cartes de stats sur 2 colonnes égales */
+    gap: 1rem; /* Réduit l'écart entre les cartes à 1rem pour gagner de l'espace */
+  }
+
+  /* Réduit légèrement la taille du logo dans la barre de navigation */
+  .nav-logo {
+    font-size: 1.1rem; /* Ajuste la taille de la police du logo pour éviter les chevauchements sur petit écran */
+  }
+  /* 1. CONTENEUR DU TABLEAU (SCROLL HORIZONTAL) */
+  .table-wrapper {
+    overflow-x: auto; /* Déclenche une barre de défilement horizontale si le tableau déborde */
+    -webkit-overflow-scrolling: touch; /* Active le défilement fluide et naturel sur les navigateurs mobiles (iOS/Safari) */
+  }
+  /* 2. CONFIGURATION GLOBALE DE LA TABLE */
+  .planning-table {
+    min-width: 999px; /* Impose une largeur minimale au tableau pour empêcher la compression illisible des colonnes */
+    font-size: 0.75rem; /* Réduit la taille globale du texte pour l'adapter aux petits écrans */
+  }
+  /* 3. STYLE DES CELLULES (EN-TÊTES ET CONTENU) */
+  .planning-table th,
+  .planning-table td {
+    padding: 0.6rem 0.75rem; /* Réduit les marges internes (haut/bas et gauche/droite) pour compacter l'affichage */
+    white-space: normal; /* Autorise le texte des cellules à revenir naturellement à la ligne */
+    word-break: break-word; /* Force la coupure des mots très longs pour éviter qu'ils ne dépassent de la cellule */
+  }
+  /* 4. DISPOSITION DES ONGLETS DE NAVIGATION */
+  .tabs-container {
+    flex-direction: column; /* Aligne les boutons d'onglets verticalement (les uns sous les autres) au lieu d'en ligne */
+    gap: 0.5rem; /* Définit un espace de 0.5rem entre chaque bouton d'onglet */
+  }
+  /* 5. BOUTONS D'ONGLETS INDIVIDUELS */
+  .tab-btn {
+    width: 100%; /* Force chaque bouton à occuper toute la largeur disponible de son conteneur */
+    justify-content: center; /* Centre horizontalement le texte et les icônes à l'intérieur du bouton */
+  }
+
+  /* GRAND ÉCRAN — min-width: 1400px */
+
+  /* S'applique uniquement aux grands écrans d'ordinateurs (1400 pixels de largeur et plus) */
+  @media (min-width: 1400px) {
+    /* Agrandit le titre principal de la section Hero */
+    .hero-title {
+      font-size: 4.5rem; /* Augmente la taille du titre pour exploiter l'espace sur très grand écran */
+    }
+
+    /* Élargit le conteneur principal des sections */
+    .section-container {
+      max-width: 1320px; /* Définit une largeur maximale plus grande pour contenir le contenu sans l'étirer excessivement */
+    }
+  }
+}
