@@ -630,5 +630,543 @@ if (tabBtns.length > 0) {
   afficherJour('1');
 }
 
+/* 
+   AFRICONNECT SUMMIT 2027 — MAIN.JS
+   COMMIT 8 : Filtrage dynamique des intervenants
+               + Validation complète du formulaire
+  */
+
+
+/* 
+   1. FILTRAGE DYNAMIQUE DES INTERVENANTS (intervenants.html)
+   Affiche/masque les cartes selon la thématique choisie
+   Sans rechargement de page */
+
+/*
+   On sélectionne tous les boutons de filtre.
+   Chaque bouton a data-filtre="ia-tech", "business" etc.
+   Ils n'existent que sur intervenants.html.
+*/
+const filtreBtns = document.querySelectorAll('.filtre-btn');
+
+/*
+   On sélectionne toutes les cartes intervenants.
+   Chaque carte a data-categorie="ia-tech", "business" etc.
+*/
+const intervenantCards = document.querySelectorAll('.intervenant-card');
+
+/*
+   On vérifie qu'on est sur intervenants.html.
+   Si les boutons n'existent pas → on ne fait rien.
+*/
+if (filtreBtns.length > 0) {
+
+  /*
+     Fonction filtrerIntervenants(categorieChoisie)
+     → affiche les cartes qui correspondent à la catégorie
+     → cache toutes les autres cartes.
+
+     Paramètre : categorieChoisie = "tous", "ia-tech", "business"...
+  */
+  function filtrerIntervenants(categorieChoisie) {
+
+    /*
+       On parcourt chaque carte intervenant une par une.
+    */
+    intervenantCards.forEach(function (carte) {
+
+      /*
+         Lire la catégorie de cette carte.
+         data-categorie="ia-tech" → on lit "ia-tech".
+      */
+      const categorieCartee = carte.getAttribute('data-categorie');
+
+      /*
+         CONDITION D'AFFICHAGE :
+         - "tous" → afficher toutes les cartes
+         - même catégorie que le filtre → afficher
+         - sinon → cacher
+      */
+      if (categorieChoisie === 'tous' || categorieCartee === categorieChoisie) {
+
+        /* Afficher la carte */
+        carte.style.display = '';
+
+        /*
+           Petite animation d'apparition.
+           On commence avec opacity 0 puis on passe à 1.
+           setTimeout avec 10ms → laisse le navigateur
+           calculer l'état initial avant la transition.
+        */
+        carte.style.opacity = '0';
+        carte.style.transform = 'translateY(20px)';
+        carte.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+
+        setTimeout(function () {
+          carte.style.opacity = '1';
+          carte.style.transform = 'translateY(0)';
+        }, 10);
+
+      } else {
+
+        /*
+           Cacher la carte.
+           display: 'none' → sort complètement du flux.
+           La grille CSS Grid se réorganise automatiquement.
+        */
+        carte.style.display = 'none';
+      }
+    });
+  }
+
+  /*
+     Écouter le clic sur chaque bouton de filtre.
+  */
+  filtreBtns.forEach(function (bouton) {
+
+    bouton.addEventListener('click', function () {
+
+      /*
+         Étape 1 : retirer "active" de TOUS les boutons.
+         On repart de zéro avant d'en activer un.
+      */
+      filtreBtns.forEach(function (b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+
+      /*
+         Étape 2 : ajouter "active" sur le bouton cliqué.
+         "this" → le bouton sur lequel on vient de cliquer.
+      */
+      this.classList.add('active');
+      this.setAttribute('aria-pressed', 'true');
+
+      /*
+         Étape 3 : lire la catégorie de ce bouton.
+         data-filtre="design" → on lit "design".
+      */
+      const categorieChoisie = this.getAttribute('data-filtre');
+
+      /*
+         Étape 4 : filtrer les cartes.
+      */
+      filtrerIntervenants(categorieChoisie);
+    });
+  });
+
+  /*
+     Initialisation : afficher tous les intervenants au chargement.
+     Le bouton "Tous" est déjà actif dans le HTML.
+  */
+  filtrerIntervenants('tous');
+}
+
+
+/* 
+   2. VALIDATION DU FORMULAIRE D'INSCRIPTION (contact.html)
+   Contrôle complet à la soumission avec retour visuel par champ */
+
+/*
+   Récupération du formulaire par id="inscriptionForm".
+   S'il n'existe pas (autres pages) → on ne fait rien.
+*/
+const inscriptionForm = document.getElementById('inscriptionForm');
+
+if (inscriptionForm) {
+
+  /* 
+     FONCTIONS UTILITAIRES DE VALIDATION*/
+
+  /*
+     showError(idChamp, message)
+     → affiche une erreur sur un champ.
+
+     Actions :
+     1. Ajoute la classe "invalid" sur le champ → bordure rouge CSS.
+     2. Retire la classe "valid".
+     3. Écrit le message d'erreur dans la zone dédiée.
+
+     Paramètres :
+     - idChamp : l'id du champ (ex: 'nom', 'email')
+     - message : le texte d'erreur à afficher
+  */
+  function showError(idChamp, message) {
+    const champ = document.getElementById(idChamp);
+    const zoneErreur = document.getElementById(idChamp + '-error');
+
+    if (champ) {
+      champ.classList.add('invalid');
+      champ.classList.remove('valid');
+    }
+    if (zoneErreur) {
+      zoneErreur.textContent = message;
+    }
+  }
+
+  /*
+     showSuccess(idChamp)
+     → marque un champ comme valide.
+
+     Actions :
+     1. Ajoute "valid" → bordure verte CSS.
+     2. Retire "invalid".
+     3. Vide le message d'erreur.
+  */
+  function showSuccess(idChamp) {
+    const champ = document.getElementById(idChamp);
+    const zoneErreur = document.getElementById(idChamp + '-error');
+
+    if (champ) {
+      champ.classList.remove('invalid');
+      champ.classList.add('valid');
+    }
+    if (zoneErreur) {
+      zoneErreur.textContent = '';
+    }
+  }
+
+  /*
+     clearValidation(idChamp)
+     → remet le champ à son état neutre (ni rouge, ni vert).
+     Utilisé avant chaque validation pour recommencer proprement.
+  */
+  function clearValidation(idChamp) {
+    const champ = document.getElementById(idChamp);
+    const zoneErreur = document.getElementById(idChamp + '-error');
+
+    if (champ) {
+      champ.classList.remove('invalid', 'valid');
+    }
+    if (zoneErreur) {
+      zoneErreur.textContent = '';
+    }
+  }
+
+  /*
+     verifierEmail(email)
+     → vérifie que le format de l'email est correct.
+     → retourne true (valide) ou false (invalide).
+
+     La regex /^[^\s@]+@[^\s@]+\.[^\s@]+$/ vérifie :
+     ^ → début de la chaîne
+     [^\s@]+ → texte sans espace ni @
+     @ → le symbole arobase
+     [^\s@]+ → le domaine (gmail, yahoo...)
+     \. → un point littéral
+     [^\s@]+ → l'extension (.com, .sn, .africa...)
+     $ → fin de la chaîne
+
+     Exemples valides   : ibrahima@gmail.com, contact@africonnect.africa
+     Exemples invalides : ibrahima@, @gmail.com, sans-arobase.com
+  */
+  function verifierEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+
+  /*
+     verifierTelephone(telephone)
+     → vérifie que le téléphone a au moins 8 chiffres.
+     → retourne true (valide) ou false (invalide).
+
+     replace(/\D/g, '')
+     → supprime TOUT ce qui n'est pas un chiffre.
+     \D = "non-digit" (espaces, +, -, parenthèses...)
+     Ex: "+221 77 000 00 00" → "22177000000" (11 chiffres)
+
+     .length >= 8 → au moins 8 chiffres requis.
+  */
+  function verifierTelephone(telephone) {
+    const chiffresUniquement = telephone.replace(/\D/g, '');
+    return chiffresUniquement.length >= 8;
+  }
+
+
+  /*
+     VALIDATION PRINCIPALE — AU CLIC SUR "ENVOYER"
+   */
+
+  /*
+     Écouter la soumission du formulaire.
+
+     event.preventDefault()
+     → BLOQUE l'envoi natif du formulaire.
+     Sans ça, la page se rechargerait et on perdrait tout.
+     On gère nous-mêmes la validation et l'affichage du résultat.
+  */
+  inscriptionForm.addEventListener('submit', function (event) {
+
+    /* Bloquer l'envoi natif */
+    event.preventDefault();
+
+    /*
+       Variable pour suivre si tout est valide.
+       Commence à true, passe à false dès qu'on trouve une erreur.
+    */
+    let toutEstValide = true;
+
+    /*
+       Lire les valeurs de chaque champ.
+       .value → ce que l'utilisateur a tapé.
+       .trim() → supprime les espaces en début et fin.
+       Ex: "  Ibrahima  " → "Ibrahima".
+    */
+    const valeurNom           = document.getElementById('nom').value.trim();
+    const valeurEmail         = document.getElementById('email').value.trim();
+    const valeurTelephone     = document.getElementById('telephone').value.trim();
+    const valeurParticipation = document.getElementById('participation').value;
+    const valeurPays          = document.getElementById('pays').value;
+    const valeurMessage       = document.getElementById('message').value.trim();
+
+    /*
+       Réinitialiser l'état visuel de tous les champs.
+       On repart de zéro avant de valider.
+    */
+    clearValidation('nom');
+    clearValidation('email');
+    clearValidation('telephone');
+    clearValidation('participation');
+    clearValidation('pays');
+    clearValidation('message');
+
+
+    /* --- VÉRIFICATION DU NOM --- */
+    if (valeurNom === '') {
+      showError('nom', 'Le nom complet est obligatoire.');
+      toutEstValide = false;
+    } else if (valeurNom.length < 2) {
+      showError('nom', 'Le nom doit contenir au moins 2 caractères.');
+      toutEstValide = false;
+    } else {
+      showSuccess('nom');
+    }
+
+
+    /* --- VÉRIFICATION DE L'EMAIL --- */
+    if (valeurEmail === '') {
+      showError('email', "L'adresse email est obligatoire.");
+      toutEstValide = false;
+    } else if (!verifierEmail(valeurEmail)) {
+      /*
+         !verifierEmail() → le ! inverse le résultat.
+         Si verifierEmail retourne false → !false = true → on entre dans le if.
+      */
+      showError('email', "Format invalide. Exemple : ibrahima@gmail.com");
+      toutEstValide = false;
+    } else {
+      showSuccess('email');
+    }
+
+
+    /* --- VÉRIFICATION DU TÉLÉPHONE --- */
+    if (valeurTelephone === '') {
+      showError('telephone', 'Le numéro de téléphone est obligatoire.');
+      toutEstValide = false;
+    } else if (!verifierTelephone(valeurTelephone)) {
+      showError('telephone', 'Le numéro doit contenir au moins 8 chiffres.');
+      toutEstValide = false;
+    } else {
+      showSuccess('telephone');
+    }
+
+
+    /* --- VÉRIFICATION DU TYPE DE PARTICIPATION --- */
+    /*
+       Le select a une option par défaut avec value="".
+       Si l'utilisateur n'a pas choisi → value est vide.
+    */
+    if (valeurParticipation === '') {
+      showError('participation', 'Veuillez choisir votre type de participation.');
+      toutEstValide = false;
+    } else {
+      showSuccess('participation');
+    }
+
+
+    /* --- VÉRIFICATION DU PAYS --- */
+    if (valeurPays === '') {
+      showError('pays', 'Veuillez sélectionner votre pays.');
+      toutEstValide = false;
+    } else {
+      showSuccess('pays');
+    }
+
+
+    /* --- VÉRIFICATION DU MESSAGE --- */
+    if (valeurMessage === '') {
+      showError('message', 'Le message/motivation est obligatoire.');
+      toutEstValide = false;
+    } else if (valeurMessage.length < 20) {
+      /*
+         .length → nombre de caractères dans la chaîne.
+         Minimum 20 caractères exigés dans le sujet.
+      */
+      showError('message',
+        'Minimum 20 caractères. Actuellement : ' + valeurMessage.length + ' caractère(s).'
+      );
+      toutEstValide = false;
+    } else {
+      showSuccess('message');
+    }
+
+
+    /* --- RÉSULTAT FINAL --- */
+
+    if (toutEstValide) {
+
+      /*
+         TOUT EST VALIDE !
+         1. Afficher le message de succès.
+         2. Vider le formulaire.
+         3. Retirer les bordures vertes.
+         4. Masquer le message après 5 secondes.
+      */
+
+      /* Afficher le message de succès */
+      const messageSucces = document.getElementById('successMessage');
+      if (messageSucces) {
+        messageSucces.style.display = 'flex';
+
+        /*
+           Faire défiler jusqu'au message pour que
+           l'utilisateur le voie sans chercher.
+        */
+        messageSucces.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+
+      /*
+         contactForm.reset()
+         → vide tous les champs du formulaire en une ligne.
+         Remet les selects à leur option par défaut.
+      */
+      inscriptionForm.reset();
+
+      /* Retirer les bordures vertes après reset */
+      ['nom', 'email', 'telephone', 'participation', 'pays', 'message'].forEach(function (id) {
+        clearValidation(id);
+      });
+
+      /*
+         Masquer automatiquement le message de succès
+         après 5 secondes (5000 millisecondes).
+      */
+      setTimeout(function () {
+        if (messageSucces) {
+          messageSucces.style.display = 'none';
+        }
+      }, 5000);
+    }
+
+    /*
+       Si toutEstValide = false :
+       Les messages d'erreur rouges sont déjà affichés.
+       Le formulaire ne s'envoie pas.
+       L'utilisateur voit exactement quel champ corriger.
+    */
+  });
+
+
+  /* 
+     VALIDATION EN DIRECT — AU MOMENT OÙ L'UTILISATEUR QUITTE UN CHAMP
+     Retour visuel immédiat sans attendre la soumission
+      */
+
+  /*
+     'blur' → événement déclenché quand un champ perd le focus.
+     (L'utilisateur clique ailleurs ou appuie sur Tab)
+     On valide le champ dès qu'il le quitte.
+  */
+
+  /* Validation live : Nom */
+  const champNom = document.getElementById('nom');
+  if (champNom) {
+    champNom.addEventListener('blur', function () {
+      const val = this.value.trim();
+      if (val === '') {
+        showError('nom', 'Le nom complet est obligatoire.');
+      } else if (val.length < 2) {
+        showError('nom', 'Au moins 2 caractères requis.');
+      } else {
+        showSuccess('nom');
+      }
+    });
+  }
+
+  /* Validation live : Email */
+  const champEmail = document.getElementById('email');
+  if (champEmail) {
+    champEmail.addEventListener('blur', function () {
+      const val = this.value.trim();
+      if (val === '') {
+        showError('email', "L'adresse email est obligatoire.");
+      } else if (!verifierEmail(val)) {
+        showError('email', "Format invalide. Exemple : ibrahima@gmail.com");
+      } else {
+        showSuccess('email');
+      }
+    });
+  }
+
+  /* Validation live : Téléphone */
+  const champTelephone = document.getElementById('telephone');
+  if (champTelephone) {
+    champTelephone.addEventListener('blur', function () {
+      const val = this.value.trim();
+      if (val === '') {
+        showError('telephone', 'Le numéro de téléphone est obligatoire.');
+      } else if (!verifierTelephone(val)) {
+        showError('telephone', 'Au moins 8 chiffres requis.');
+      } else {
+        showSuccess('telephone');
+      }
+    });
+  }
+
+  /*
+     Validation live : Message avec compteur de caractères en temps réel.
+
+     'input' → événement déclenché à CHAQUE frappe du clavier.
+     Permet d'afficher le compteur pendant que l'utilisateur tape.
+  */
+  const champMessage = document.getElementById('message');
+  if (champMessage) {
+
+    /* Validation quand on quitte le champ */
+    champMessage.addEventListener('blur', function () {
+      const val = this.value.trim();
+      if (val === '') {
+        showError('message', 'Le message/motivation est obligatoire.');
+      } else if (val.length < 20) {
+        showError('message', 'Minimum 20 caractères. Actuellement : ' + val.length + '.');
+      } else {
+        showSuccess('message');
+      }
+    });
+
+    /* Compteur en temps réel pendant la frappe */
+    champMessage.addEventListener('input', function () {
+      const val = this.value.trim();
+      const zoneErreur = document.getElementById('message-error');
+
+      if (val.length > 0 && val.length < 20 && zoneErreur) {
+        /*
+           Afficher combien de caractères il reste à écrire.
+           20 - val.length → nombre de caractères manquants.
+        */
+        zoneErreur.textContent = 'Encore ' + (20 - val.length) + ' caractère(s) à écrire.';
+        this.classList.add('invalid');
+        this.classList.remove('valid');
+      } else if (val.length >= 20) {
+        /* 20 caractères atteints → vert */
+        showSuccess('message');
+      }
+    });
+  }
+
+}
 
 
